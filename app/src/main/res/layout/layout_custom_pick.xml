@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_65sdp"
+    android:layout_height="@dimen/_28sdp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/picker_color">
+
+        <Button
+            android:id="@+id/decrement"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:padding="0dp"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:background="@color/picker_color"
+            android:textSize="15sp"
+            android:text="—"/>
+
+        <TextView
+            android:id="@+id/display"
+            android:minWidth="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="0"
+
+            android:background="@color/picker_color"
+            android:textColor="#fff"
+            android:focusable="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:inputType="number"
+            android:gravity="center"
+            />
+        <Button
+            android:id="@+id/increment"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:padding="0dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:background="@color/picker_color"
+            android:text="+"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_28sdp"
+        android:background="@color/picker_color"
+        android:textColor="#fff"
+        android:visibility="visible"
+        android:textAllCaps="false"
+        android:text="Qty"
+        />
+
+</FrameLayout>

@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/change_text_color</item>
+        <item name="colorControlNormal">@color/radio_normal</item>
+    </style>
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/mrp_color</item>
+        <item name="colorControlActivated">@color/golden</item>
+    </style>
+
+    <style name="RadioButton.Custom" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="colorControlActivated">@color/change_text_color</item>
+        <item name="colorControlNormal">@color/radio_normal</item>
+    </style>
+    <style name="bnve">
+
+        <item name="android:textSize">@dimen/design_bottom_navigation_active_text_size</item>
+
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/_5sdp</item>
+    </style>
+</resources>

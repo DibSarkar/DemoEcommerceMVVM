@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">NextGrocer</string>
+    <string name="Rs500">\u20B9 500</string>
+    <string name="Rs850">\u20B9 850</string>
+    <string name="Rs0">\u20B9 0</string>
+    <string name="discount_text">25%\nOFF</string>
+    <string name="hint_account">New Customer?</string>
+    <string name="already_login">Already have account?</string>
+    <string name="hint_sign_up">Register</string>
+    <string name="hint_login">Login</string>
+    <string name="terms_conditions">Privacy Policy</string>
+</resources>

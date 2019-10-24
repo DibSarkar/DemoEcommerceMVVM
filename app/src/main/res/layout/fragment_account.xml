@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/home_bg"
+    xmlns:numberpicker="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:id="@+id/app_layout"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:elevation="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme"
+            >
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:gravity="center"
+
+                android:background="@color/colorPrimary"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="MY ACCOUNT"
+                    android:layout_centerInParent="true"
+                    android:textSize="@dimen/_20sdp"
+
+                    android:textColor="#fff"
+                    android:gravity="center"
+                    android:id="@+id/tv_header"
+                    android:layout_height="wrap_content"/>
+
+                <!--  <ImageView
+                      android:layout_width="@dimen/_120sdp"
+                      android:scaleType="centerCrop"
+                      android:background="@drawable/header_logo"
+                      android:layout_margin="@dimen/_15sdp"
+                      android:layout_centerInParent="true"
+
+                      android:layout_height="@dimen/_22sdp"/>
+  -->
+
+
+
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@id/app_layout"
+        android:background="@color/home_bg"
+
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="@dimen/_10sdp"
+        android:background="@color/order_status_text_color"
+
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/_55sdp"
+            android:src="@drawable/img_avatar"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_height="@dimen/_55sdp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#fff"
+            android:text="Dib Sarkar"
+
+            android:id="@+id/tv_name"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textSize="@dimen/_13sdp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#fff"
+            android:text="8240379920"
+            android:id="@+id/tv_mob"
+            android:layout_marginTop="@dimen/_3sdp"
+
+            android:textSize="@dimen/_13sdp"
+            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/_3sdp"
+            android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/checkout_view_color"
+            android:text="sarkardib052@gmail.com"
+            android:layout_centerInParent="true"
+            android:id="@+id/tv_email"
+            android:textSize="@dimen/_11sdp"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:layout_width="@dimen/_13sdp"
+            android:src="@drawable/edit_white"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_height="@dimen/_13sdp"/>
+        </RelativeLayout>
+
+
+
+
+
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginRight="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+
+    android:layout_height="wrap_content"
+    android:background="@drawable/account_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="My Orders"
+        android:paddingLeft="@dimen/_15sdp"
+        android:paddingRight="@dimen/_15sdp"
+        android:paddingTop="@dimen/_15sdp"
+        android:textSize="@dimen/_14sdp"
+        android:id="@+id/tv_myorders_label"
+
+        android:textColor="@color/black"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/view_color"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="View All Orders"
+        android:layout_gravity="right"
+        android:textSize="@dimen/_10sdp"
+        android:id="@+id/tv_my_orders_text"
+        android:textColor="@color/featured_category"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+
+
+        android:layout_height="wrap_content"/>
+
+
+
+
+</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+
+
+            android:layout_height="wrap_content"
+            android:background="@drawable/account_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Reward Points"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:paddingTop="@dimen/_15sdp"
+                android:textSize="@dimen/_14sdp"
+                android:id="@+id/tv_reward_points"
+
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@color/view_color"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="500"
+                android:layout_gravity="left"
+                android:id="@+id/tv_reward_text"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:textSize="@dimen/_13sdp"
+                android:textColor="@color/featured_category"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+
+                android:layout_height="wrap_content"/>
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+
+            android:layout_height="wrap_content"
+            android:background="@drawable/account_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Address Book"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:paddingTop="@dimen/_15sdp"
+                android:textSize="@dimen/_14sdp"
+                android:id="@+id/tv_address_label"
+
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@color/view_color"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="View All Address(s)"
+                android:layout_gravity="right"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@color/featured_category"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:id="@+id/tv_address_text"
+
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+
+            android:layout_height="wrap_content"
+            android:background="@drawable/account_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Returns"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:paddingTop="@dimen/_15sdp"
+                android:textSize="@dimen/_14sdp"
+                android:id="@+id/tv_return_label"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@color/view_color"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="View All Returns"
+                android:layout_gravity="right"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@color/featured_category"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:id="@+id/tv_return_label_text"
+
+                android:layout_height="wrap_content"/>
+
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+
+            android:layout_height="wrap_content"
+            android:background="@drawable/account_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Change Password"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:paddingTop="@dimen/_15sdp"
+                android:textSize="@dimen/_14sdp"
+                android:id="@+id/tv_change_label"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@color/view_color"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Change"
+                android:layout_gravity="right"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@color/featured_category"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:id="@+id/tv_change_label_text"
+
+                android:layout_height="wrap_content"/>
+
+
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+
+            android:gravity="center"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_10sdp"
+
+
+            android:layout_height="wrap_content"
+            android:background="@drawable/account_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Logout"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:id="@+id/tv_logout_label"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:textSize="@dimen/_14sdp"
+                android:layout_centerInParent="true"
+
+
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:id="@+id/iv_logout"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/power"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

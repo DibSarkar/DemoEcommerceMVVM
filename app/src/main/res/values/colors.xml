@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00755b</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="menu_selected">#339f45</color>
+    <color name="divider">#49f27a</color>
+    <color name="categories_bg">#f5f5f5</color>
+    <color name="menu_unselected">#515151</color>
+    <color name="featured_category">#00755b</color>
+    <color name="black_effective">#2a2a2a</color>
+  <!--  <color name="home_bg">#f5f5f5</color>-->
+    <color name="home_bg">#e9e9e9</color>
+    <color name="product_title">#5b5b5b</color>
+    <color name="mrp_color">#919191</color>
+    <color name="black">#010101</color>
+    <color name="offers">#e22633</color>
+    <color name="golden">#ffa421</color>
+    <color name="view_color">#bfbfbf</color>
+    <color name="green_color">#4fc763</color>
+    <color name="desc_color">#434343</color>
+    <color name="button_color">#03775d</color>
+    <color name="white">#fff</color>
+    <color name="picker_color">#5ed273</color>
+    <color name="grey">#ededed</color>
+    <color name="change_color">#429b52</color>
+    <color name="change_text_color">#46b55a</color>
+    <color name="checkout_view_color">#dddddd</color>
+    <color name="radio_text_color">#4b4b4b</color>
+    <color name="radio_normal">#828282</color>
+    <color name="order_id_text">#767676</color>
+    <color name="order_status_text_color">#06785e</color>
+    <color name="order_status_color">#979797</color>
+    <color name="privacy_color">#4477b7</color>
+</resources>

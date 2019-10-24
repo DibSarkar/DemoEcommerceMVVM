@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center"
+    android:background="@color/home_bg"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="@dimen/_43sdp"
+
+        android:background="@drawable/circle_bg"
+        android:layout_height="@dimen/_43sdp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/category1"
+            android:id="@+id/iv_cat"
+            android:padding="@dimen/_8sdp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:text="Fruits"
+        android:id="@+id/tv_category"
+        android:textColor="#000"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textSize="@dimen/_10sdp"
+       android:gravity="center"
+
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

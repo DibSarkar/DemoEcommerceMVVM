@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="150dp"
+
+    android:layout_marginRight="2dp"
+    android:layout_marginLeft="2dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_height="match_parent"
+
+    >
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_height="wrap_content"
+        android:background="@drawable/home_product_bg"
+        android:id="@+id/ll_up"
+        >
+
+        <LinearLayout
+            android:id="@+id/product_img"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="1dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/home_product_inner_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_12sdp"
+                android:src="@drawable/featured_pro1"
+                android:id="@+id/iv_pro"
+                android:layout_height="100dp"/>
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Lorem Ipsum dolor"
+            android:gravity="center"
+            android:id="@+id/tv_product_name"
+            android:textColor="@color/product_title"
+            android:textSize="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/Rs500"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:id="@+id/tv_sell_price"
+
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/Rs850"
+                android:textColor="@color/mrp_color"
+                android:textSize="@dimen/_10sdp"
+                android:id="@+id/tv_mrp_price"
+                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_5sdp"
+            android:layout_below="@+id/ll_up"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_11sdp"
+        android:layout_below="@+id/ll_up"/>
+
+    <ImageView
+        android:id="@+id/overlapImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:src="@drawable/plus" />
+
+
+</RelativeLayout>

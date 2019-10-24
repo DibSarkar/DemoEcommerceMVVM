@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/home_bg"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/product_list_item_bg"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_alignParentLeft="true"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="@dimen/_90sdp"
+                    android:background="@drawable/item_bg"
+                    android:orientation="horizontal"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:layout_height="@dimen/_90sdp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:padding="@dimen/_5sdp"
+                        android:id="@+id/iv_pro"
+                        android:src="@drawable/newarrival_pro1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Fresh Carrot"
+
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        android:id="@+id/tv_product_name"
+                        android:layout_height="wrap_content"/>
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="@string/Rs500"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_18sdp"
+                        android:id="@+id/tv_sell_price"
+
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_height="wrap_content"/>
+                    <com.travijuu.numberpicker.library.NumberPicker
+                        android:id="@+id/np_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:custom_layout="@layout/layout_custom_cart"
+                        android:layout_centerHorizontal="true"
+                        app:min="0"
+                        app:max="10"
+                        app:value="0"
+                        />
+
+                 <!--   <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:paddingRight="@dimen/_5sdp"
+                        android:background="@drawable/mix_color"
+                        android:layout_height="@dimen/_23sdp">
+                        <ImageView
+                            android:layout_width="@dimen/_11sdp"
+                            android:src="@drawable/btn_cart"
+                            android:layout_marginLeft="@dimen/_3sdp"
+
+
+                            android:layout_height="@dimen/_11sdp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="Add to Cart"
+                            android:paddingLeft="@dimen/_3sdp"
+                            android:id="@+id/tv_add"
+                            android:paddingRight="@dimen/_3sdp"
+                            android:textColor="#fff"
+                            android:layout_marginRight="@dimen/_3sdp"
+                            android:textSize="@dimen/_8sdp"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>-->
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+           <!-- <FrameLayout
+                android:id="@+id/fl_offer"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_alignParentRight="true"
+                android:layout_height="@dimen/_32sdp"
+
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_offer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:src="@color/offers" />
+
+                <TextView
+                    android:id="@+id/tv_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/discount_text"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="#fff"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_10sdp"
+
+                    android:layout_gravity="center"/>
+
+
+            </FrameLayout>-->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="true"
+                android:orientation="vertical">
+            <ImageView
+                android:layout_width="@dimen/_23sdp"
+                android:src="@drawable/del_cart"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_60sdp"
+                android:layout_gravity="right|bottom"
+                android:layout_height="@dimen/_23sdp"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

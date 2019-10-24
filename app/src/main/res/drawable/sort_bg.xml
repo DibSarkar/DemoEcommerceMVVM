@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <item>
+        <shape>
+            <padding
+                android:bottom="2dp"
+                android:top="0.5dp"
+                android:left="1dp"
+                android:right="1dp"
+                />
+            <solid android:color="#00E5E5E5" />
+<corners android:radius="@dimen/_3sdp"/>
+
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding
+                android:bottom="2dp"
+                android:top="0.5dp"
+                android:left="1dp"
+                android:right="1dp"
+                />
+            <solid android:color="#10E5E5E5" />
+            <corners android:radius="@dimen/_3sdp"/>
+
+
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding
+                android:bottom="2dp"
+                android:top="0.5dp"
+                android:left="1dp"
+                android:right="1dp"
+                />
+            <solid android:color="#20E5E5E5" />
+            <corners android:radius="@dimen/_3sdp"/>
+
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding
+                android:bottom="2dp"
+                android:top="0.5dp"
+                android:left="1dp"
+                android:right="1dp"
+                />
+            <solid android:color="#30E5E5E5" />
+            <corners android:radius="@dimen/_3sdp"/>
+
+
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding
+                android:bottom="2dp"
+                android:top="0.5dp"
+                android:left="1dp"
+                android:right="1dp"
+                />
+
+            <solid android:color="#50E5E5E5" />
+            <corners android:radius="@dimen/_3sdp"/>
+
+        </shape>
+    </item>
+
+    <!-- Background -->
+    <item>
+        <shape>
+            <solid android:color="#FFFFFF" />
+            <corners android:radius="@dimen/_5sdp"/>
+
+
+
+        </shape>
+    </item>
+
+
+
+
+
+
+</layer-list>
