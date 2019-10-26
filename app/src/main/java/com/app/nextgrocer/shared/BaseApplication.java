@@ -1,4 +1,4 @@
-package com.app.nextgrocer.base;
+package com.app.nextgrocer.shared;
 
 import android.app.Activity;
 import android.app.Application;

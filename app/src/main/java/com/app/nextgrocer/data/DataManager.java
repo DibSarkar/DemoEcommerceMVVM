@@ -18,6 +18,9 @@ package com.app.nextgrocer.data;
 
 
 
+import com.app.nextgrocer.data.prefs.PreferencesHelper;
+import com.app.nextgrocer.data.rest.ApiHelper;
+
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -26,7 +29,7 @@ import io.reactivex.Observable;
  * Created by amitshekhar on 07/07/17.
  */
 
-public interface DataManager /*extends DbHelper, PreferencesHelper, ApiHelper*/ {
+public interface DataManager extends PreferencesHelper, ApiHelper {
 
     //Observable<List<QuestionCardData>> getQuestionCardData();
 
@@ -36,7 +39,7 @@ public interface DataManager /*extends DbHelper, PreferencesHelper, ApiHelper*/ 
 
     void setUserAsLoggedOut();
 
-    void updateApiHeader(Long userId, String accessToken);
+    void updateApiHeader(String api_token);
 
     void updateUserInfo(
             String accessToken,

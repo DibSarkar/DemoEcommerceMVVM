@@ -18,14 +18,14 @@ package com.app.nextgrocer.data;
 
 import android.content.Context;
 
+import com.app.nextgrocer.data.model.home.HomeApiResponse;
+import com.app.nextgrocer.data.model.product_details.ProductDetailsRequest;
+import com.app.nextgrocer.data.model.product_details.ProductDetailsResponse;
+import com.app.nextgrocer.data.prefs.PreferencesHelper;
+import com.app.nextgrocer.data.rest.ApiHeader;
 import com.app.nextgrocer.data.rest.ApiHelper;
 import com.google.gson.Gson;
-import com.google.gson.internal.$Gson$Types;
-import com.google.gson.reflect.TypeToken;
 
-
-import java.lang.reflect.Type;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -49,13 +49,13 @@ public class AppDataManager implements DataManager {
 
     private final Gson mGson;
 
-    //private final PreferencesHelper mPreferencesHelper;
+    private final PreferencesHelper mPreferencesHelper;
 
     @Inject
-    public AppDataManager(Context context, /*DbHelper dbHelper, PreferencesHelper preferencesHelper,*/ ApiHelper apiHelper, Gson gson) {
+    public AppDataManager(Context context, /*DbHelper dbHelper*/  PreferencesHelper preferencesHelper,ApiHelper apiHelper, Gson gson) {
         mContext = context;
- /*       mDbHelper = dbHelper;
-        mPreferencesHelper = preferencesHelper;*/
+//     mDbHelper = dbHelper;
+        mPreferencesHelper = preferencesHelper;
         mApiHelper = apiHelper;
         mGson = gson;
     }
@@ -77,12 +77,78 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public void updateApiHeader(Long userId, String accessToken) {
+    public void updateApiHeader(String api_token) {
 
+        mApiHelper.getApiHeader().getProtectedApiHeader().setApi_token(api_token);
     }
 
     @Override
     public void updateUserInfo(String accessToken, Long userId, LoggedInMode loggedInMode, String userName, String email, String profilePicPath) {
 
+    }
+
+    @Override
+    public String getCurrentUserEmail() {
+        return null;
+    }
+
+    @Override
+    public void setCurrentUserEmail(String email) {
+
+    }
+
+    @Override
+    public Long getCurrentUserId() {
+        return null;
+    }
+
+    @Override
+    public void setCurrentUserId(Long userId) {
+
+    }
+
+    @Override
+    public int getCurrentUserLoggedInMode() {
+        return 0;
+    }
+
+    @Override
+    public void setCurrentUserLoggedInMode(LoggedInMode mode) {
+
+    }
+
+    @Override
+    public String getCurrentUserName() {
+        return null;
+    }
+
+    @Override
+    public void setCurrentUserName(String userName) {
+
+    }
+
+    @Override
+    public String getCurrentUserProfilePicUrl() {
+        return null;
+    }
+
+    @Override
+    public void setCurrentUserProfilePicUrl(String profilePicUrl) {
+
+    }
+
+    @Override
+    public Observable<HomeApiResponse> getHomeData() {
+        return mApiHelper.getHomeData();
+    }
+
+    @Override
+    public Single<ProductDetailsResponse> getProductDetails(ProductDetailsRequest productDetailsRequest) {
+        return mApiHelper.getProductDetails(productDetailsRequest);
+    }
+
+    @Override
+    public ApiHeader getApiHeader() {
+        return mApiHelper.getApiHeader();
     }
 }

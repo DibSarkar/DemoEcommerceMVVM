@@ -14,7 +14,7 @@
  *  limitations under the License
  */
 
-package com.app.nextgrocer.base;
+package com.app.nextgrocer.shared;
 
 
 import androidx.lifecycle.ViewModel;

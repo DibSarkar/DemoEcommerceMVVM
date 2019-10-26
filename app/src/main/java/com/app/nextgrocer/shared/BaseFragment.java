@@ -1,4 +1,4 @@
-package com.app.nextgrocer.base;
+package com.app.nextgrocer.shared;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+
+import com.app.nextgrocer.base.BaseActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -20,7 +20,7 @@ import dagger.android.support.DaggerFragment;
 
 public abstract class BaseFragment <V extends BaseViewModel> extends DaggerFragment {
 
-    private BaseActivity mActivity;
+    private com.app.nextgrocer.base.BaseActivity mActivity;
     private View mRootView;
     private Unbinder unbinder;
     private V mViewModel;
@@ -51,8 +51,8 @@ public abstract class BaseFragment <V extends BaseViewModel> extends DaggerFragm
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof BaseActivity) {
-            this.mActivity = (BaseActivity) context;
+        if (context instanceof com.app.nextgrocer.base.BaseActivity) {
+            this.mActivity = (com.app.nextgrocer.base.BaseActivity) context;
             this.mActivity.onFragmentAttached();
         }
     }

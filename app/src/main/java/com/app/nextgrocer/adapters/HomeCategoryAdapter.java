@@ -1,6 +1,5 @@
 package com.app.nextgrocer.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -12,7 +11,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.nextgrocer.R;
-import com.app.nextgrocer.local_models.LocalBean;
+import com.app.nextgrocer.data.model.home.HomeApiResponse;
+import com.app.nextgrocer.utils.GlideApp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 
 public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapter.ViewHolder>   {
 
-    private final ArrayList<LocalBean> mValues;
+    private final ArrayList<HomeApiResponse.CategoryBean> mValues;
 
     Context mContext;
     public HomeCategoryListener mListener;
@@ -44,11 +44,11 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
     }
 
     public interface HomeCategoryListener {
-        void onItemClick(LocalBean item, int position);
+        void onItemClick(HomeApiResponse.CategoryBean item, int position);
 
     }
 
-    public void addItems(List<LocalBean> localBeanList) {
+    public void addItems(List<HomeApiResponse.CategoryBean> localBeanList) {
         mValues.addAll(localBeanList);
         notifyDataSetChanged();
     }
@@ -58,28 +58,13 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
 
-        final LocalBean mDataBean = mValues.get(position);
-        if(mDataBean.getId()==1)
-        {
-            holder.iv_cat.setImageResource(R.drawable.category1);
-        }
-
-      else if(mDataBean.getId()==2)
-        {
-            holder.iv_cat.setImageResource(R.drawable.category2);
-        }
-        else if(mDataBean.getId()==3)
-        {
-            holder.iv_cat.setImageResource(R.drawable.category3);
-        }
-        else if(mDataBean.getId()==4)
-        {
-            holder.iv_cat.setImageResource(R.drawable.category4);
-        }
-        else if(mDataBean.getId()==5)
-        {
-            holder.iv_cat.setImageResource(R.drawable.category5);
-        }
+        final HomeApiResponse.CategoryBean categoryBean = mValues.get(position);
+        holder.tv_category.setText(categoryBean.getName());
+        GlideApp.with(mContext)
+                .load(categoryBean.getImage())
+                .placeholder(R.drawable.category1)
+                .centerCrop()
+                .into(holder.iv_cat);
         holder.tv_category.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "robotoMedium.ttf"));
 
     }

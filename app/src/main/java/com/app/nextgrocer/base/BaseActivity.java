@@ -14,13 +14,13 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.app.nextgrocer.shared.BaseFragment;
+import com.app.nextgrocer.shared.BaseViewModel;
 import com.app.nextgrocer.utils.CommonUtils;
 import com.app.nextgrocer.utils.NetworkUtils;
 
-import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import dagger.android.AndroidInjection;
-import dagger.android.support.DaggerAppCompatActivity;
 
 public abstract class BaseActivity <V extends BaseViewModel> extends AppCompatActivity  implements BaseFragment.Callback
        {

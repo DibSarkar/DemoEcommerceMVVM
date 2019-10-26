@@ -22,7 +22,7 @@ import android.content.SharedPreferences;
 
 import com.app.nextgrocer.data.DataManager;
 import com.app.nextgrocer.di.PreferenceInfo;
-import com.app.nextgrocer.utils.AppConstants;
+import com.app.nextgrocer.utils.Constants;
 
 import javax.inject.Inject;
 
@@ -51,15 +51,6 @@ public class AppPreferencesHelper implements PreferencesHelper {
         mPrefs = context.getSharedPreferences(prefFileName, Context.MODE_PRIVATE);
     }
 
-    @Override
-    public String getAccessToken() {
-        return mPrefs.getString(PREF_KEY_ACCESS_TOKEN, null);
-    }
-
-    @Override
-    public void setAccessToken(String accessToken) {
-        mPrefs.edit().putString(PREF_KEY_ACCESS_TOKEN, accessToken).apply();
-    }
 
     @Override
     public String getCurrentUserEmail() {
@@ -73,13 +64,13 @@ public class AppPreferencesHelper implements PreferencesHelper {
 
     @Override
     public Long getCurrentUserId() {
-        long userId = mPrefs.getLong(PREF_KEY_CURRENT_USER_ID, AppConstants.NULL_INDEX);
-        return userId == AppConstants.NULL_INDEX ? null : userId;
+        long userId = mPrefs.getLong(PREF_KEY_CURRENT_USER_ID, Constants.NULL_INDEX);
+        return userId == Constants.NULL_INDEX ? null : userId;
     }
 
     @Override
     public void setCurrentUserId(Long userId) {
-        long id = userId == null ? AppConstants.NULL_INDEX : userId;
+        long id = userId == null ? Constants.NULL_INDEX : userId;
         mPrefs.edit().putLong(PREF_KEY_CURRENT_USER_ID, id).apply();
     }
 

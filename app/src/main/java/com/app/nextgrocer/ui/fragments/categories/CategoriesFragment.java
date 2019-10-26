@@ -4,14 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -19,23 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.nextgrocer.R;
-import com.app.nextgrocer.base.BaseFragment;
+import com.app.nextgrocer.shared.BaseFragment;
 import com.app.nextgrocer.ui.activities.productDetails.ProductDetailsActivity;
 import com.app.nextgrocer.adapters.CategoryAdapter;
 import com.app.nextgrocer.local_models.LocalBean;
-import com.app.nextgrocer.ui.fragments.home.HomeFragmentNavigator;
-import com.app.nextgrocer.ui.fragments.home.HomeFragmentViewModel;
 import com.app.nextgrocer.utils.Constants;
 import com.app.nextgrocer.utils.SpacesItemDecoration;
 import com.app.nextgrocer.utils.ViewModelProviderFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class CategoriesFragment extends BaseFragment<CategoriesViewModel> implements CategoriesFragmentNavigator {
 

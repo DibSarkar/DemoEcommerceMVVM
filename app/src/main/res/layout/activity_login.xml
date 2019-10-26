@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
-    android:background="@drawable/login_bg">
+    android:background="@color/home_bg">
     <RelativeLayout
         android:layout_width="match_parent"
         android:id="@+id/rl_bar"
@@ -82,7 +82,7 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_36sdp"
-                            android:hint="Enter mobile no."
+                            android:hint="Enter mobile no.or email id"
                             android:lines="1"
                             android:drawableLeft="@drawable/phone_icon"
 
@@ -95,7 +95,7 @@
                             android:layout_marginRight="@dimen/_15sdp"
                             android:drawablePadding="@dimen/_10sdp"
 
-                            android:inputType="phone"
+                            android:inputType="text"
                             android:id="@+id/et_email"
                             android:textColorHint="@color/mrp_color"
                             android:textColor="@color/desc_color"

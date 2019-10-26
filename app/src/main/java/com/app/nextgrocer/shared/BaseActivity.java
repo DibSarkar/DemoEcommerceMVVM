@@ -82,7 +82,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void setUp();
 
 
-    public class SpaceDecoration extends RecyclerView.ItemDecoration {
+   /* public class SpaceDecoration extends RecyclerView.ItemDecoration {
         int px;
 
         public SpaceDecoration(int px) {
@@ -95,6 +95,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             outRect.bottom = Math.round(AppUtils.getDeviceDensityScale(context) * px);
         }
-    }
+    }*/
 
 }

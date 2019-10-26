@@ -1,16 +1,10 @@
 package com.app.nextgrocer.ui.activities.productDetails;
 
 
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.app.nextgrocer.adapters.HomeCategoryAdapter;
-import com.app.nextgrocer.adapters.HomeProductsAdapter;
 import com.app.nextgrocer.adapters.NewArrivalsProductAdapter;
-import com.app.nextgrocer.base.BaseViewModel;
-import com.app.nextgrocer.data.DataManager;
-import com.app.nextgrocer.ui.fragments.home.HomeFragment;
-import com.app.nextgrocer.utils.rx.SchedulerProvider;
+import com.app.nextgrocer.adapters.SimilarProductsAdapter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -25,7 +19,7 @@ public class ProductDetailsModule {
 
 
     @Provides
-    NewArrivalsProductAdapter provideNewArrivalsProductAdapter() {
-        return new NewArrivalsProductAdapter();
+    SimilarProductsAdapter provideSimilarProductsAdapter() {
+        return new SimilarProductsAdapter();
     }
 }

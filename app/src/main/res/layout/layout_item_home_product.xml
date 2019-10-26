@@ -27,22 +27,27 @@
             android:paddingBottom="5dp"
             android:background="@drawable/home_product_inner_bg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/_90sdp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="@dimen/_12sdp"
-                android:layout_marginRight="@dimen/_12sdp"
+                android:layout_width="@dimen/_95sdp"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingRight="@dimen/_5sdp"
                 android:src="@drawable/featured_pro1"
                 android:id="@+id/iv_pro"
+                android:scaleType="fitCenter"
 
-                android:layout_height="@dimen/_90sdp"/>
+
+
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:text="Lorem Ipsum dolor"
-            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
             android:textColor="@color/product_title"
             android:id="@+id/tv_product_name"
             android:textSize="@dimen/_8sdp"
@@ -69,6 +74,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:text="@string/Rs850"
+
                 android:textColor="@color/mrp_color"
                 android:textSize="@dimen/_10sdp"
                 android:id="@+id/tv_mrp_price"

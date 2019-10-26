@@ -19,22 +19,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.nextgrocer.R;
-import com.app.nextgrocer.base.BaseFragment;
+import com.app.nextgrocer.data.model.home.HomeApiResponse;
+import com.app.nextgrocer.shared.BaseFragment;
 import com.app.nextgrocer.ui.activities.productDetails.ProductDetailsActivity;
 import com.app.nextgrocer.ui.activities.ProductListActivity;
 import com.app.nextgrocer.adapters.HomeCategoryAdapter;
 import com.app.nextgrocer.adapters.HomeProductsAdapter;
 import com.app.nextgrocer.adapters.NewArrivalsProductAdapter;
-import com.app.nextgrocer.local_models.LocalBean;
+import com.app.nextgrocer.utils.ChildAnimationExample;
 import com.app.nextgrocer.utils.Constants;
 import com.app.nextgrocer.utils.SpacesItemDecoration;
 import com.app.nextgrocer.utils.ViewModelProviderFactory;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -204,7 +203,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
     }
 
 
-    void setUpCategories()
+   private void setUpCategories()
     {
         /* For Home Categories */
         rv_categories.setHasFixedSize(true);
@@ -215,13 +214,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
         rv_categories.setItemAnimator(new DefaultItemAnimator());
         subscribeToLiveDataCategories();
 
-        categoryAdapter.setAdapterListener(new HomeCategoryAdapter.HomeCategoryListener() {
-            @Override
-            public void onItemClick(LocalBean item, int position) {
-                Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         /* For Featured Products */
         rv_featured.setHasFixedSize(true);
@@ -230,14 +223,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
         rv_featured.setItemAnimator(new DefaultItemAnimator());
         subscribeToLiveDataFeaturedProducts();
 
-        homeProductsAdapter.setAdapterListener(new HomeProductsAdapter.HomeProductListener() {
-            @Override
-            public void onItemClick(LocalBean item, int position) {
 
-                Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
 
         /* For New Arrival Products */
         rv_new_arrivals.setHasFixedSize(true);
@@ -247,16 +233,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
         rv_new_arrivals.setItemAnimator(new DefaultItemAnimator());
         subscribeToLiveDataNewArrivalProducts();
 
-        newArrivalsProductAdapter.setAdapterListener(new NewArrivalsProductAdapter.NewArrivalProductListener() {
-            @Override
-            public void onItemClick(LocalBean item, int position) {
-                Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         /* Fetch sliders */
-        observeToSliders();
+        subscribeToLiveDataSliders();
 
 
 
@@ -271,69 +251,94 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
 
     }
 
-    private void observeToSliders()
+    private void subscribeToLiveDataSliders()
     {
 
+      homeFragmentViewModel.getSliders().observe(this, new Observer<List<HomeApiResponse.BannerBean.TopbannerImageBean>>() {
+          @Override
+          public void onChanged(List<HomeApiResponse.BannerBean.TopbannerImageBean> topbannerImageBeans) {
+              for (int i = 0; i < topbannerImageBeans.size(); i++) {
+                  DefaultSliderView textSliderView = new DefaultSliderView(getContext());
+                  // initialize a SliderLayout
+                  textSliderView
+                          .description("")
+                          .image(topbannerImageBeans.get(i).getImage());
+                          //.setScaleType(BaseSliderView.ScaleType);
+                  textSliderView.bundle(new Bundle());
+                  textSliderView.getBundle()
+                          .putString("extra", topbannerImageBeans.get(i).getImage());
+                  slider.addSlider(textSliderView);
+              }
+              slider.setPresetTransformer(SliderLayout.Transformer.Accordion);
+              slider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+              slider.setCustomAnimation(new ChildAnimationExample());
+              slider.setDuration(4000);
+          }
+      });
 
-        System.out.println();
-        HashMap<String,Integer> file_maps = homeFragmentViewModel.getSliders();
 
 
-        for(String name : file_maps.keySet()){
-            DefaultSliderView defaultSliderView = new DefaultSliderView(getActivity());
-            // initialize a SliderLayout
-            defaultSliderView
-                    .description(name)
-                    .image(file_maps.get(name))
-                    .setScaleType(BaseSliderView.ScaleType.Fit);
-            defaultSliderView.bundle(new Bundle());
-            defaultSliderView.getBundle()
-                    .putString("extra",name);
-
-            slider.addSlider(defaultSliderView);
-        }
-
-        slider.setPresetTransformer(SliderLayout.Transformer.Accordion);
-        slider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        slider.setCustomAnimation(new DescriptionAnimation());
-        slider.setDuration(4000);
 
     }
 
     private void subscribeToLiveDataCategories() {
-        homeFragmentViewModel.getCategoriesList().observe(this, new Observer<List<LocalBean>>() {
+        homeFragmentViewModel.getCategoriesList().observe(this, new Observer<List<HomeApiResponse.CategoryBean>>() {
             @Override
-            public void onChanged(List<LocalBean> localBeans) {
+            public void onChanged(List<HomeApiResponse.CategoryBean> categoryBeans) {
 
-                categoryAdapter.addItems(localBeans);
+                categoryAdapter.addItems(categoryBeans);
                 rv_categories.setAdapter(categoryAdapter);
 
 
             }
         });
-    }
-
-    private void subscribeToLiveDataFeaturedProducts() {
-        homeFragmentViewModel.getFeaturedProducts().observe(this, new Observer<List<LocalBean>>() {
+        categoryAdapter.setAdapterListener(new HomeCategoryAdapter.HomeCategoryListener() {
             @Override
-            public void onChanged(List<LocalBean> localBeans) {
-
-                homeProductsAdapter.addItems(localBeans);
-                rv_featured.setAdapter(homeProductsAdapter);
-
-
+            public void onItemClick(HomeApiResponse.CategoryBean item, int position) {
+                Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
+                startActivity(intent);
             }
         });
     }
 
 
-    private void subscribeToLiveDataNewArrivalProducts() {
-        homeFragmentViewModel.getNewArrivalProducts().observe(this, new Observer<List<LocalBean>>() {
+    private void subscribeToLiveDataFeaturedProducts() {
+        homeFragmentViewModel.getFeaturedProducts().observe(this, new Observer<List<HomeApiResponse.FeatureBean>>() {
             @Override
-            public void onChanged(List<LocalBean> localBeans) {
+            public void onChanged(List<HomeApiResponse.FeatureBean> featureBeans) {
+
+                homeProductsAdapter.addItems(featureBeans);
+                rv_featured.setAdapter(homeProductsAdapter);
+            }
+        });
+        homeProductsAdapter.setAdapterListener(new HomeProductsAdapter.HomeProductListener() {
+            @Override
+            public void onItemClick(HomeApiResponse.FeatureBean item, int position) {
+
+                Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
+                intent.putExtra("pro_id",item.getProduct_id());
+                startActivity(intent);
+            }
+        });
+    }
+
+
+
+    private void subscribeToLiveDataNewArrivalProducts() {
+        homeFragmentViewModel.getNewArrivalProducts().observe(this, new Observer<List<HomeApiResponse.NewarrivalBean>>() {
+            @Override
+            public void onChanged(List<HomeApiResponse.NewarrivalBean> localBeans) {
 
                 newArrivalsProductAdapter.addItems(localBeans);
                 rv_new_arrivals.setAdapter(newArrivalsProductAdapter);
+            }
+        });
+
+        newArrivalsProductAdapter.setAdapterListener(new NewArrivalsProductAdapter.NewArrivalProductListener() {
+            @Override
+            public void onItemClick(HomeApiResponse.NewarrivalBean item, int position) {
+                Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
+                startActivity(intent);
             }
         });
     }

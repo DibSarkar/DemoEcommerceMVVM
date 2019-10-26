@@ -4,10 +4,9 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.app.nextgrocer.base.BaseViewModel;
+import com.app.nextgrocer.shared.BaseViewModel;
 import com.app.nextgrocer.data.DataManager;
 import com.app.nextgrocer.local_models.LocalBean;
-import com.app.nextgrocer.ui.fragments.home.HomeFragmentNavigator;
 import com.app.nextgrocer.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;

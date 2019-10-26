@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.nextgrocer.R;
 import com.app.nextgrocer.data.model.home.HomeApiResponse;
+import com.app.nextgrocer.data.model.product_details.ProductDetailsResponse;
 import com.app.nextgrocer.utils.GlideApp;
 
 import java.util.ArrayList;
@@ -22,9 +23,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NewArrivalsProductAdapter extends RecyclerView.Adapter<NewArrivalsProductAdapter.ViewHolder>   {
+public class SimilarProductsAdapter extends RecyclerView.Adapter<SimilarProductsAdapter.ViewHolder>   {
 
-    private final ArrayList<HomeApiResponse.NewarrivalBean> mValues;
+    private final ArrayList<ProductDetailsResponse.RelatedProductBean> mValues;
 
 
 
@@ -32,8 +33,9 @@ public class NewArrivalsProductAdapter extends RecyclerView.Adapter<NewArrivalsP
     Activity activity;
     int status;
 
-    public NewArrivalProductListener mListener;
-    public NewArrivalsProductAdapter() {
+    public SimilarProductsListener mListener;
+
+    public SimilarProductsAdapter() {
         this.mValues = new ArrayList<>();
     }
 
@@ -44,16 +46,16 @@ public class NewArrivalsProductAdapter extends RecyclerView.Adapter<NewArrivalsP
         return new ViewHolder(layoutView);
     }
 
-    public void setAdapterListener(NewArrivalProductListener mListener) {
+    public void setAdapterListener(SimilarProductsListener mListener) {
         this.mListener = mListener;
     }
 
-    public interface NewArrivalProductListener {
-        void onItemClick(HomeApiResponse.NewarrivalBean item, int position);
+    public interface SimilarProductsListener {
+        void onItemClick(ProductDetailsResponse.RelatedProductBean item, int position);
 
     }
 
-    public void addItems(List<HomeApiResponse.NewarrivalBean> localBeanList) {
+    public void addItems(List<ProductDetailsResponse.RelatedProductBean> localBeanList) {
         mValues.addAll(localBeanList);
         notifyDataSetChanged();
     }
@@ -63,7 +65,7 @@ public class NewArrivalsProductAdapter extends RecyclerView.Adapter<NewArrivalsP
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
 
-        final HomeApiResponse.NewarrivalBean newarrivalBean = mValues.get(position);
+        final ProductDetailsResponse.RelatedProductBean newarrivalBean = mValues.get(position);
 
         holder.tv_product_name.setText(newarrivalBean.getName());
         if(!newarrivalBean.getSpecial().isEmpty())
@@ -135,4 +137,5 @@ public class NewArrivalsProductAdapter extends RecyclerView.Adapter<NewArrivalsP
         }
     }
 }
+
 

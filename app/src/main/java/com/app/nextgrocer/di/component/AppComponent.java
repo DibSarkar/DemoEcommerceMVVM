@@ -18,7 +18,7 @@ package com.app.nextgrocer.di.component;
 
 import android.app.Application;
 
-import com.app.nextgrocer.base.BaseApplication;
+import com.app.nextgrocer.shared.BaseApplication;
 import com.app.nextgrocer.di.builder.ActivityBuilder;
 import com.app.nextgrocer.di.module.AppModule;
 

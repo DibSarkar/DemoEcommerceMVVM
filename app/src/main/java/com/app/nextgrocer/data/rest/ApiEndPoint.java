@@ -14,16 +14,24 @@
  *  limitations under the License
  */
 
-package com.app.nextgrocer.ui.activities.productDetails;
+package com.app.nextgrocer.data.rest;
+
+
+import com.app.nextgrocer.BuildConfig;
+import com.app.nextgrocer.utils.Constants;
 
 /**
- * Created by amitshekhar on 08/07/17.
+ * Created by amitshekhar on 07/07/17.
  */
 
-public interface ProductDetailsNavigator {
+public final class ApiEndPoint {
 
-    void getProductData(String pro_name, String desc, int rating, int reviews, String price, String special_price);
-   /* void openLoginActivity();
+    public static final String HOME_URL = Constants.BASE_URL+"home/homePage";
 
-    void openMainActivity();*/
+    public static final String PRODUCT_DETAILS_URL = Constants.BASE_URL+"product/productDetails";
+
+
+    private ApiEndPoint() {
+        // This class is not publicly instantiable
+    }
 }

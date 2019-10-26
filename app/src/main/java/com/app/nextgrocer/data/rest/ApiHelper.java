@@ -18,6 +18,11 @@ package com.app.nextgrocer.data.rest;
 
 
 
+import com.app.nextgrocer.data.model.home.HomeApiResponse;
+import com.app.nextgrocer.data.model.product_details.ProductDetailsRequest;
+import com.app.nextgrocer.data.model.product_details.ProductDetailsResponse;
+
+import io.reactivex.Observable;
 import io.reactivex.Single;
 
 /**
@@ -25,10 +30,15 @@ import io.reactivex.Single;
  */
 
 public interface ApiHelper {
-/*
-    Single<LoginResponse> doFacebookLoginApiCall(LoginRequest.FacebookLoginRequest request);
 
-    Single<LoginResponse> doGoogleLoginApiCall(LoginRequest.GoogleLoginRequest request);
+    ApiHeader getApiHeader();
+
+    Observable<HomeApiResponse> getHomeData();
+
+    Single<ProductDetailsResponse> getProductDetails(ProductDetailsRequest productDetailsRequest);
+
+
+  /*  Single<LoginResponse> doGoogleLoginApiCall(LoginRequest.GoogleLoginRequest request);
 
     Single<LogoutResponse> doLogoutApiCall();
 

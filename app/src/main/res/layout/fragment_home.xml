@@ -125,7 +125,7 @@
                     android:orientation="horizontal">
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_15sdp"
                         android:layout_weight="0.5"
                         android:id="@+id/iv_back_cat"
 
@@ -148,7 +148,7 @@
                     </androidx.recyclerview.widget.RecyclerView>
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_15sdp"
                         android:layout_weight="0.5"
                         android:id="@+id/iv_next_cat"
 
@@ -198,8 +198,9 @@
                 <com.daimajia.slider.library.SliderLayout
                     android:id="@+id/slider"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_170sdp"
+                    android:layout_height="@dimen/_160sdp"
                     custom:auto_cycle="true"
+
                     custom:indicator_visibility="visible"
                     custom:pager_animation="Accordion"
                     custom:pager_animation_span="1100"

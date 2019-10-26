@@ -6,13 +6,17 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
@@ -23,11 +27,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.nextgrocer.R;
 import com.app.nextgrocer.adapters.NewArrivalsProductAdapter;
+import com.app.nextgrocer.adapters.SimilarProductsAdapter;
 import com.app.nextgrocer.base.BaseActivity;
+import com.app.nextgrocer.data.model.product_details.ProductDetailsResponse;
 import com.app.nextgrocer.local_models.LocalBean;
 import com.app.nextgrocer.ui.activities.CartActivity;
 import com.app.nextgrocer.ui.activities.home.MainNavigator;
 import com.app.nextgrocer.ui.activities.home.MainViewModel;
+import com.app.nextgrocer.utils.ChildAnimationExample;
 import com.app.nextgrocer.utils.Constants;
 import com.app.nextgrocer.utils.SpacesItemDecoration;
 import com.app.nextgrocer.utils.ViewModelProviderFactory;
@@ -37,6 +44,7 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.travijuu.numberpicker.library.NumberPicker;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,6 +71,9 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
     @BindView(R.id.slider)
     SliderLayout slider;
 
+    @BindView(R.id.fl_offer)
+    FrameLayout fl_offer;
+
     @BindView(R.id.rv_similar_products)
     RecyclerView rv_similar_products;
 
@@ -84,20 +95,8 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
     @BindView(R.id.tv_desc_title)
     TextView tv_desc_title;
 
-    @BindView(R.id.tv_desc1)
-    TextView tv_desc1;
-
-    @BindView(R.id.tv_desc2)
-    TextView tv_desc2;
-
-    @BindView(R.id.tv_desc3)
-    TextView tv_desc3;
-
-    @BindView(R.id.tv_desc4)
-    TextView tv_desc4;
-
-    @BindView(R.id.tv_desc5)
-    TextView tv_desc5;
+    @BindView(R.id.tv_desc)
+    TextView tv_desc;
 
     @BindView(R.id.tv_similar)
     TextView tv_similar;
@@ -108,6 +107,9 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
     @BindView(R.id.btn_wish)
     Button btn_wish;
 
+    @BindView(R.id.rb_product)
+    AppCompatRatingBar appCompatRatingBar;
+
     @Inject
     ViewModelProviderFactory factory;
 
@@ -117,7 +119,7 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
     private ProductDetailsViewModel productDetailsViewModel;
 
     @Inject
-    NewArrivalsProductAdapter newArrivalsProductAdapter;
+    SimilarProductsAdapter similarProductsAdapter;
 
 
     @Override
@@ -144,6 +146,8 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
 
     protected void setUp() {
         setUnBinder(ButterKnife.bind(this));
+        productDetailsViewModel.setNavigator(this);
+
         np_count.setValue(1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -157,18 +161,13 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
 
     public void updateUI()
     {
-        tv_mrp_price.setPaintFlags(tv_mrp_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         tv_header.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
         tv_desc_title.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
         tv_offer.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
         tv_similar.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
         tv_mrp_price.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
         tv_reviews.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
-        tv_desc1.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
-        tv_desc2.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
-        tv_desc3.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
-        tv_desc4.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
-        tv_desc5.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
+        tv_desc.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
         tv_sell_price.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_bold.ttf"));
         btn_wish.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
         btn_add.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
@@ -183,24 +182,13 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
     public void loadSimilarProducts() {
 
 
-        productDetailsViewModel.getSimilar_ProductsList().observe(this, new Observer<List<LocalBean>>() {
-            @Override
-            public void onChanged(List<LocalBean> localBeans) {
+        if(getIntent().getExtras()!=null) {
 
-                newArrivalsProductAdapter.addItems(localBeans);
-                rv_similar_products.setAdapter(newArrivalsProductAdapter);
-            }
-        });
+         productDetailsViewModel.fetchSimilarProducts(getIntent().getExtras().getString("pro_id"));
+         subscribeToLiveDataSliders();
+         subscribeToLiveDataSimilarProducts();
 
-        newArrivalsProductAdapter.setAdapterListener(new NewArrivalsProductAdapter.NewArrivalProductListener() {
-            @Override
-            public void onItemClick(LocalBean item, int position) {
-                Intent intent = new Intent(getApplicationContext(), ProductDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        observeToSliders();
+        }
     }
 
     void setUpList()
@@ -227,32 +215,59 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
         return super.onOptionsItemSelected(item);
 
     }
-    private void observeToSliders()
+
+    private void subscribeToLiveDataSimilarProducts()
+    {
+        productDetailsViewModel.getSimilar_ProductsList().observe(this, new Observer<List<ProductDetailsResponse.RelatedProductBean>>() {
+             @Override
+             public void onChanged(List<ProductDetailsResponse.RelatedProductBean> relatedProductBeans) {
+
+                 similarProductsAdapter.addItems(relatedProductBeans);
+                 rv_similar_products.setAdapter(similarProductsAdapter);
+             }
+
+         });
+
+         similarProductsAdapter.setAdapterListener(new SimilarProductsAdapter.SimilarProductsListener() {
+             @Override
+             public void onItemClick(ProductDetailsResponse.RelatedProductBean item, int position) {
+                 Intent intent = new Intent(getApplicationContext(), ProductDetailsActivity.class);
+                 startActivity(intent);
+             }
+         });
+    }
+    private void subscribeToLiveDataSliders()
     {
 
+       productDetailsViewModel.getProductSliders().observe(this, new Observer<List<ProductDetailsResponse.ProductBean.ImagesBean.ImageBean>>() {
+           @Override
+           public void onChanged(List<ProductDetailsResponse.ProductBean.ImagesBean.ImageBean> imageBeans) {
 
-        System.out.println();
-        HashMap<String,Integer> file_maps = productDetailsViewModel.getSliders();
+               if (imageBeans.size() > 0) {
+                   System.out.println("length of image" + " " + imageBeans.size());
 
+                   slider.removeAllSliders();
+                   slider.stopAutoCycle();
+                   for (int i = 0; i < imageBeans.size(); i++) {
+                       DefaultSliderView textSliderView = new DefaultSliderView(getApplicationContext());
+                       // initialize a SliderLayout
+                       textSliderView
+                               .description("")
+                               .image(imageBeans.get(i).getThumb())
+                               .setScaleType(BaseSliderView.ScaleType.FitCenterCrop);
+                       textSliderView.bundle(new Bundle());
+                       textSliderView.getBundle()
+                               .putString("extra", imageBeans.get(i).getThumb());
+                       slider.addSlider(textSliderView);
+                   }
+                   slider.setPresetTransformer(SliderLayout.Transformer.Accordion);
+                   slider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+                   slider.setCustomAnimation(new ChildAnimationExample());
+                   slider.setDuration(4000);
+               }
+           }
+       });
 
-        for(String name : file_maps.keySet()){
-            DefaultSliderView defaultSliderView = new DefaultSliderView(this);
-            // initialize a SliderLayout
-            defaultSliderView
-                    .description(name)
-                    .image(file_maps.get(name))
-                    .setScaleType(BaseSliderView.ScaleType.Fit);
-            defaultSliderView.bundle(new Bundle());
-            defaultSliderView.getBundle()
-                    .putString("extra",name);
-
-            slider.addSlider(defaultSliderView);
-        }
-
-        slider.setPresetTransformer(SliderLayout.Transformer.Accordion);
-        slider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        slider.setCustomAnimation(new DescriptionAnimation());
-        slider.setDuration(4000);
 
     }
 
@@ -264,9 +279,34 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
                 Intent intent = new Intent(this, CartActivity.class);
                 startActivity(intent);
                 break;
-
-
         }
     }
 
+    @Override
+    public void getProductData(String pro_name, String desc, int rating, int reviews, String price, String special_price) {
+
+        tv_product_name.setText(pro_name);
+        tv_reviews.setText(String.valueOf(reviews)+" "+"Reviews");
+        tv_desc.setText(Html.fromHtml(desc));
+        appCompatRatingBar.setRating(rating);
+        if(!special_price.equals(""))
+        {
+            fl_offer.setVisibility(View.VISIBLE);
+            double offer = Math.round(((Double.parseDouble(price)-Double.parseDouble(special_price))/Double.parseDouble(price))*100);
+            DecimalFormat df = new DecimalFormat("###.#");
+            tv_offer.setText("("+df.format(offer)+"%"+" "+"OFF"+")");
+            tv_mrp_price.setVisibility(View.VISIBLE);
+            tv_mrp_price.setPaintFlags(tv_mrp_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            tv_mrp_price.setText(getApplicationContext().getResources().getString(R.string.Rs)+" "+price);
+            tv_sell_price.setText(getApplicationContext().getResources().getString(R.string.Rs)+" "+special_price);
+        }
+        else {
+            fl_offer.setVisibility(View.GONE);
+            tv_mrp_price.setVisibility(View.INVISIBLE);
+            tv_sell_price.setText(getApplicationContext().getResources().getString(R.string.Rs)+" "+price);
+
+        }
+
+
+    }
 }

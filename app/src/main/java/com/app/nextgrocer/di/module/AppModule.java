@@ -20,7 +20,6 @@ import android.app.Application;
 import android.content.Context;
 
 
-import com.app.nextgrocer.BuildConfig;
 import com.app.nextgrocer.data.AppDataManager;
 import com.app.nextgrocer.data.DataManager;
 import com.app.nextgrocer.data.prefs.AppPreferencesHelper;
@@ -31,7 +30,7 @@ import com.app.nextgrocer.data.rest.AppApiHelper;
 import com.app.nextgrocer.di.ApiInfo;
 import com.app.nextgrocer.di.DatabaseInfo;
 import com.app.nextgrocer.di.PreferenceInfo;
-import com.app.nextgrocer.utils.AppConstants;
+import com.app.nextgrocer.utils.Constants;
 import com.app.nextgrocer.utils.rx.AppSchedulerProvider;
 import com.app.nextgrocer.utils.rx.SchedulerProvider;
 import com.google.gson.Gson;
@@ -78,7 +77,7 @@ public class AppModule {
     @Provides
     @DatabaseInfo
     String provideDatabaseName() {
-        return AppConstants.DB_NAME;
+        return Constants.DB_NAME;
     }
 
 
@@ -92,7 +91,7 @@ public class AppModule {
     @Provides
     @PreferenceInfo
     String providePreferenceName() {
-        return AppConstants.PREF_NAME;
+        return Constants.PREF_NAME;
     }
 
     @Provides
@@ -105,10 +104,7 @@ public class AppModule {
     @Singleton
     ApiHeader.ProtectedApiHeader provideProtectedApiHeader(@ApiInfo String apiKey,
                                                            PreferencesHelper preferencesHelper) {
-        return new ApiHeader.ProtectedApiHeader(
-                apiKey,
-                preferencesHelper.getCurrentUserId(),
-                preferencesHelper.getAccessToken());
+        return new ApiHeader.ProtectedApiHeader(Constants.API_TOKEN);
     }
     @Provides
     SchedulerProvider provideSchedulerProvider() {

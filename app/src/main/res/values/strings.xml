@@ -2,6 +2,7 @@
     <string name="app_name">NextGrocer</string>
     <string name="Rs500">\u20B9 500</string>
     <string name="Rs850">\u20B9 850</string>
+    <string name="Rs">\u20B9</string>
     <string name="Rs0">\u20B9 0</string>
     <string name="discount_text">25%\nOFF</string>
     <string name="hint_account">New Customer?</string>

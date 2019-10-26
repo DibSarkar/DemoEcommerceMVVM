@@ -3,7 +3,7 @@
     android:shape="oval"
     android:thicknessRatio="2"
     android:useLevel="false" >
-    <solid android:color="@android:color/transparent" />
+    <solid android:color="@color/home_bg" />
 
     <stroke
         android:width="@dimen/_2sdp"

@@ -17,11 +17,16 @@
 package com.app.nextgrocer.data.rest;
 
 
+import com.app.nextgrocer.data.model.home.HomeApiResponse;
+import com.app.nextgrocer.data.model.product_details.ProductDetailsRequest;
+import com.app.nextgrocer.data.model.product_details.ProductDetailsResponse;
+import com.app.nextgrocer.utils.Constants;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 
 /**
@@ -37,6 +42,32 @@ public class AppApiHelper implements ApiHelper {
     public AppApiHelper(ApiHeader apiHeader) {
         mApiHeader = apiHeader;
     }
+
+    @Override
+    public Observable<HomeApiResponse> getHomeData() {
+            return Rx2AndroidNetworking.post(ApiEndPoint.HOME_URL)
+                   // .addHeaders(mApiHeader.getProtectedApiHeader())
+                    .addQueryParameter("api_token", Constants.API_TOKEN)
+                    .build()
+                    .getObjectObservable(HomeApiResponse.class);
+        }
+
+    @Override
+    public Single<ProductDetailsResponse> getProductDetails(ProductDetailsRequest productDetailsRequest) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.PRODUCT_DETAILS_URL)
+                .addBodyParameter(productDetailsRequest)
+                // .addHeaders(mApiHeader.getProtectedApiHeader())
+                .addQueryParameter("api_token", Constants.API_TOKEN)
+                .build()
+                .getObjectSingle(ProductDetailsResponse.class);
+    }
+
+    @Override
+    public ApiHeader getApiHeader() {
+        return mApiHeader;
+    }
+
+}
 
  /*   @Override
     public Single<LoginResponse> doFacebookLoginApiCall(LoginRequest.FacebookLoginRequest request) {
@@ -93,4 +124,4 @@ public class AppApiHelper implements ApiHelper {
                 .build()
                 .getObjectSingle(OpenSourceResponse.class);
     }*/
-}
+

@@ -16,7 +16,7 @@
 
 package com.app.nextgrocer.ui.activities.splash;
 
-import com.app.nextgrocer.base.BaseViewModel;
+import com.app.nextgrocer.shared.BaseViewModel;
 import com.app.nextgrocer.data.DataManager;
 import com.app.nextgrocer.utils.rx.SchedulerProvider;
 

@@ -50,66 +50,46 @@ public class ApiHeader {
 
     public static final class ProtectedApiHeader {
 
-        @Expose
-        @SerializedName("access_token")
-        private String mAccessToken;
+
 
         @Expose
-        @SerializedName("api_key")
-        private String mApiKey;
+        @SerializedName("api_token")
+        private String api_token;
 
-        @Expose
-        @SerializedName("user_id")
-        private Long mUserId;
 
-        public ProtectedApiHeader(String mApiKey, Long mUserId, String mAccessToken) {
-            this.mApiKey = mApiKey;
-            this.mUserId = mUserId;
-            this.mAccessToken = mAccessToken;
+
+
+        public ProtectedApiHeader(String api_token) {
+
+            this.api_token = api_token;
         }
 
-        public String getAccessToken() {
-            return mAccessToken;
+        public String getApi_token() {
+            return api_token;
         }
 
-        public void setAccessToken(String accessToken) {
-            mAccessToken = accessToken;
-        }
-
-        public String getApiKey() {
-            return mApiKey;
-        }
-
-        public void setApiKey(String apiKey) {
-            mApiKey = apiKey;
-        }
-
-        public Long getUserId() {
-            return mUserId;
-        }
-
-        public void setUserId(Long mUserId) {
-            this.mUserId = mUserId;
+        public void setApi_token(String api_token) {
+            this.api_token = api_token;
         }
     }
 
     public static final class PublicApiHeader {
 
         @Expose
-        @SerializedName("api_key")
-        private String mApiKey;
+        @SerializedName("api_token")
+        private String api_token;
 
         @Inject
-        public PublicApiHeader(@ApiInfo String apiKey) {
-            mApiKey = apiKey;
+        public PublicApiHeader(@ApiInfo String api_token) {
+            api_token = api_token;
         }
 
-        public String getApiKey() {
-            return mApiKey;
+        public String getApi_token() {
+            return api_token;
         }
 
-        public void setApiKey(String apiKey) {
-            mApiKey = apiKey;
+        public void setApi_token(String api_token) {
+            this.api_token = api_token;
         }
     }
 }

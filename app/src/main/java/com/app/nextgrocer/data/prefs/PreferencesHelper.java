@@ -25,9 +25,6 @@ import com.app.nextgrocer.data.DataManager;
 
 public interface PreferencesHelper {
 
-    String getAccessToken();
-
-    void setAccessToken(String accessToken);
 
     String getCurrentUserEmail();
 

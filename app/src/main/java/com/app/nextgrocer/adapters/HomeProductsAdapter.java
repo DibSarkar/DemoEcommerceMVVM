@@ -1,22 +1,20 @@
 package com.app.nextgrocer.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.nextgrocer.R;
-import com.app.nextgrocer.local_models.LocalBean;
+import com.app.nextgrocer.data.model.home.HomeApiResponse;
+import com.app.nextgrocer.utils.GlideApp;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +23,7 @@ import butterknife.ButterKnife;
 
 public class HomeProductsAdapter extends RecyclerView.Adapter<HomeProductsAdapter.ViewHolder>   {
 
-    private final ArrayList<LocalBean> mValues;
+    private final ArrayList<HomeApiResponse.FeatureBean> mValues;
 
 
 
@@ -44,13 +42,13 @@ public class HomeProductsAdapter extends RecyclerView.Adapter<HomeProductsAdapte
     }
 
     public interface HomeProductListener {
-        void onItemClick(LocalBean item, int position);
+        void onItemClick(HomeApiResponse.FeatureBean item, int position);
 
     }
 
 
-    public void addItems(List<LocalBean> localBeanList) {
-        mValues.addAll(localBeanList);
+    public void addItems(List<HomeApiResponse.FeatureBean> featureBeanList) {
+        mValues.addAll(featureBeanList);
         notifyDataSetChanged();
     }
 
@@ -68,31 +66,25 @@ public class HomeProductsAdapter extends RecyclerView.Adapter<HomeProductsAdapte
     public void onBindViewHolder(final HomeProductsAdapter.ViewHolder holder, final int position) {
 
 
-      final LocalBean mDataBean = mValues.get(position);
-      if(mDataBean.getId()==1)
+      final HomeApiResponse.FeatureBean featureBean = mValues.get(position);
+
+      holder.tv_product_name.setText(featureBean.getName());
+      if(!featureBean.getSpecial().isEmpty())
       {
-          holder.iv_pro.setImageResource(R.drawable.featured_pro1);
+          holder.tv_mrp_price.setVisibility(View.VISIBLE);
+          holder.tv_mrp_price.setText(mContext.getResources().getString(R.string.Rs)+" "+featureBean.getPrice());
+          holder.tv_sell_price.setText(mContext.getResources().getString(R.string.Rs)+" "+featureBean.getSpecial());
+
       }
-      else  if(mDataBean.getId()==2)
-      {
-          holder.iv_pro.setImageResource(R.drawable.featured_pro2);
+      else {
+          holder.tv_mrp_price.setVisibility(View.GONE);
+          holder.tv_sell_price.setText(mContext.getResources().getString(R.string.Rs)+" "+featureBean.getPrice());
       }
-      else  if(mDataBean.getId()==3)
-      {
-          holder.iv_pro.setImageResource(R.drawable.featured_pro3);
-      }
-      else if(mDataBean.getId()==4)
-        {
-            holder.iv_pro.setImageResource(R.drawable.featured_pro1);
-        }
-        else  if(mDataBean.getId()==5)
-        {
-            holder.iv_pro.setImageResource(R.drawable.featured_pro2);
-        }
-        else  if(mDataBean.getId()==6)
-        {
-            holder.iv_pro.setImageResource(R.drawable.featured_pro3);
-        }
+
+        GlideApp.with(mContext)
+                .load(featureBean.getThumb())
+                .placeholder(R.drawable.featured_pro1)
+                .into(holder.iv_pro);
 
         holder.tv_product_name.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "roboto_regular.ttf"));
         holder.tv_sell_price.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "robotoMedium.ttf"));
