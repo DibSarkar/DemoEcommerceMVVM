@@ -17,15 +17,19 @@
 package com.app.nextgrocer.di.builder;
 
 
-import com.app.nextgrocer.ui.activities.LoginActivity;
-import com.app.nextgrocer.ui.activities.home.MainActivityProvider;
+import com.app.nextgrocer.ui.activities.editProfile.EditProfileActivity;
+import com.app.nextgrocer.ui.activities.login.LoginActivity;
 import com.app.nextgrocer.ui.activities.productDetails.ProductDetailsActivity;
 import com.app.nextgrocer.ui.activities.productDetails.ProductDetailsModule;
+import com.app.nextgrocer.ui.activities.productList.ProductListActivity;
+import com.app.nextgrocer.ui.activities.productList.ProductListModule;
+import com.app.nextgrocer.ui.activities.register.RegisterActivity;
 import com.app.nextgrocer.ui.activities.splash.SplashActivity;
 import com.app.nextgrocer.ui.activities.home.MainActivity;
 import com.app.nextgrocer.ui.fragments.categories.CategoriesFragmentProvider;
-import com.app.nextgrocer.ui.fragments.home.HomeFragmentModule;
 import com.app.nextgrocer.ui.fragments.home.HomeFragmentProvider;
+import com.app.nextgrocer.ui.fragments.myaccount.MyAccountFragmentProvider;
+import com.app.nextgrocer.ui.fragments.myaccount.changePass.ChangePassDialogProvider;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -41,14 +45,25 @@ public abstract class ActivityBuilder {
     @ContributesAndroidInjector
     abstract LoginActivity bindLoginActivity();
 
+    @ContributesAndroidInjector
+    abstract RegisterActivity bindRegisterActivity();
+
     @ContributesAndroidInjector(modules = {HomeFragmentProvider.class,
-            CategoriesFragmentProvider.class})
+            CategoriesFragmentProvider.class, MyAccountFragmentProvider.class, ChangePassDialogProvider.class})
     abstract MainActivity bindMainActivity();
 
     @ContributesAndroidInjector
     abstract SplashActivity bindSplashActivity();
 
+    @ContributesAndroidInjector
+    abstract EditProfileActivity bindEditProfileActivity();
+
     @ContributesAndroidInjector(modules = ProductDetailsModule.class)
     abstract ProductDetailsActivity bindProductDetailsActivity();
+
+    @ContributesAndroidInjector(modules = ProductListModule.class)
+    abstract ProductListActivity bindProductListActivity();
+
+
 
 }

@@ -87,6 +87,8 @@ public abstract class BaseFragment <V extends BaseViewModel> extends DaggerFragm
         mViewDataBinding.executePendingBindings();*/
     }
 
+
+
     public BaseActivity getBaseActivity() {
         return mActivity;
     }

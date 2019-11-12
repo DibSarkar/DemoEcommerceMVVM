@@ -48,7 +48,7 @@
 
 
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:id="@+id/tv_product_name"
                         android:layout_height="wrap_content"/>
 
@@ -65,7 +65,7 @@
                         android:layout_width="wrap_content"
                         android:text="@string/Rs500"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_18sdp"
+                        android:textSize="@dimen/_14sdp"
                         android:id="@+id/tv_sell_price"
 
                         android:layout_marginTop="@dimen/_2sdp"
@@ -162,7 +162,7 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="#fff"
                     android:textAlignment="center"
-                    android:textSize="@dimen/_9sdp"
+                    android:textSize="@dimen/_8sdp"
 
                     android:layout_gravity="center"/>
 

@@ -37,6 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+
     public void setUnbinder(Unbinder unbinder) {
         this.unbinder = unbinder;
     }

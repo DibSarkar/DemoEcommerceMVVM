@@ -18,9 +18,20 @@ package com.app.nextgrocer.data.rest;
 
 
 
+import com.app.nextgrocer.data.model.CommonResponse;
+import com.app.nextgrocer.data.model.categories.CategoriesResponse;
+import com.app.nextgrocer.data.model.changePass.ChangePassRequest;
 import com.app.nextgrocer.data.model.home.HomeApiResponse;
 import com.app.nextgrocer.data.model.product_details.ProductDetailsRequest;
 import com.app.nextgrocer.data.model.product_details.ProductDetailsResponse;
+import com.app.nextgrocer.data.model.product_list.CategoriesProductResponse;
+import com.app.nextgrocer.data.model.product_list.CategoryProductRequest;
+import com.app.nextgrocer.data.model.product_list.ProductListResponse;
+import com.app.nextgrocer.data.model.profile.EditProfileRequest;
+import com.app.nextgrocer.data.model.profile.ProfileRequest;
+import com.app.nextgrocer.data.model.register_login.LoginRequest;
+import com.app.nextgrocer.data.model.register_login.RegisterLoginResponse;
+import com.app.nextgrocer.data.model.register_login.RegisterRequest;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -37,7 +48,21 @@ public interface ApiHelper {
 
     Single<ProductDetailsResponse> getProductDetails(ProductDetailsRequest productDetailsRequest);
 
+    Observable<ProductListResponse> getProductList(String sort, String order);
 
+    Observable<CategoriesResponse> getCategoryList();
+
+    Observable<CategoriesProductResponse> getCategoryProductList(CategoryProductRequest categoryProductRequest,String sort, String order);
+
+    Single<RegisterLoginResponse> register(RegisterRequest registerRequest);
+
+    Single<RegisterLoginResponse> login(LoginRequest loginRequest);
+
+    Single<RegisterLoginResponse> getProfile(ProfileRequest profileRequest);
+
+    Single<RegisterLoginResponse> editProfile(EditProfileRequest profileRequest);
+
+    Single<CommonResponse> changePass(ChangePassRequest changePassRequest);
   /*  Single<LoginResponse> doGoogleLoginApiCall(LoginRequest.GoogleLoginRequest request);
 
     Single<LogoutResponse> doLogoutApiCall();

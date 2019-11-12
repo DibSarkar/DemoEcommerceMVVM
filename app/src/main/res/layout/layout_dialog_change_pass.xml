@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+
+
+    >
+
+    <LinearLayout
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_210sdp"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@color/home_bg"
+
+
+
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CHANGE PASSWORD"
+            android:gravity="center"
+            android:id="@+id/tv_change_pass"
+            android:layout_marginTop="@dimen/_15sdp"
+
+
+
+            android:textColor="@color/colorPrimaryDark"
+            android:padding="8dp"
+            android:textSize="@dimen/_14sdp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_emailWrapper"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:theme="@style/InputLayout">
+
+                <EditText
+                    android:id="@+id/edt_newpass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textSize="@dimen/_11sdp"
+                    android:inputType="textPassword"
+                    android:lines="1"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_phoneWrapper"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_height="wrap_content"
+                android:theme="@style/InputLayout">
+
+                <EditText
+                    android:id="@+id/edt_conpass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Confirm Password"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textSize="@dimen/_11sdp"
+                    android:inputType="textPassword"
+                    android:lines="1"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:layout_width="@dimen/_92sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/mix_color"
+                android:textColor="#fff"
+                android:id="@+id/btn_change"
+                android:textSize="@dimen/_11sdp"
+
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="SUBMIT"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

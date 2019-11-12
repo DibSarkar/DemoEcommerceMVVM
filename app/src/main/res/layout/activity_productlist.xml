@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
 
 
-                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_25sdp"
 
                 android:background="@color/colorPrimary"
                 android:layout_height="wrap_content">
@@ -37,7 +37,7 @@
                     android:layout_width="@dimen/_120sdp"
 
 
-                    android:paddingRight="@dimen/_25sdp"
+
                     android:background="@drawable/header_logo"
                     android:layout_centerInParent="true"
 
@@ -107,7 +107,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_marginLeft="@dimen/_20sdp"
-                    android:gravity="center"
+
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_20sdp"
@@ -116,7 +116,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:text="10 items"
+                        android:text="0 items"
+                        android:paddingBottom="@dimen/_5sdp"
                         android:id="@+id/tv_pro_count"
                         android:layout_centerInParent="true"
                         android:layout_height="wrap_content"/>
@@ -126,27 +127,33 @@
                         android:layout_alignParentRight="true"
                         android:orientation="horizontal"
                         android:paddingLeft="@dimen/_10sdp"
-                        android:paddingRight="@dimen/_10sdp"
-                        android:gravity="center"
-
+                        android:paddingRight="@dimen/_5sdp"
+                        android:id="@+id/rl_sort"
                         android:background="@drawable/sort_bg"
                         android:layout_centerInParent="true"
                         android:layout_height="@dimen/_35sdp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:text="Sort by"
                             android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:paddingBottom="@dimen/_4sdp"
                             android:id="@+id/tv_sort_by"
+                            android:textSize="@dimen/_12sdp"
                             android:layout_alignParentLeft="true"
                             android:layout_height="wrap_content"/>
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_toRightOf="@+id/tv_sort_by"
+                            android:layout_marginLeft="@dimen/_2sdp"
 
-
-                        <ImageView
-                            android:layout_width="@dimen/_10sdp"
-                            android:src="@drawable/down_arrow"
                             android:layout_centerInParent="true"
-                           android:layout_alignParentRight="true"
-                            android:layout_height="@dimen/_10sdp"/>
+                            style="?spinnerStyle"
+                            android:background="@drawable/bg_spinner"
+
+                            android:id="@+id/spinner_sort"
+                            android:layout_height="match_parent"/>
 
 
                     </RelativeLayout>
@@ -170,7 +177,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:id="@+id/rv_product_list"
-                android:layout_marginTop="@dimen/_5sdp"
+
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:layout_height="match_parent">
 

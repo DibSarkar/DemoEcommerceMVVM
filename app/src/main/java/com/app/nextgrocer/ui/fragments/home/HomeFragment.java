@@ -1,5 +1,6 @@
 package com.app.nextgrocer.ui.fragments.home;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -10,7 +11,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -20,17 +23,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.nextgrocer.R;
 import com.app.nextgrocer.data.model.home.HomeApiResponse;
+import com.app.nextgrocer.data.rest.ApiResponse;
 import com.app.nextgrocer.shared.BaseFragment;
+import com.app.nextgrocer.ui.activities.CartActivity;
 import com.app.nextgrocer.ui.activities.productDetails.ProductDetailsActivity;
-import com.app.nextgrocer.ui.activities.ProductListActivity;
+import com.app.nextgrocer.ui.activities.productList.ProductListActivity;
 import com.app.nextgrocer.adapters.HomeCategoryAdapter;
 import com.app.nextgrocer.adapters.HomeProductsAdapter;
 import com.app.nextgrocer.adapters.NewArrivalsProductAdapter;
 import com.app.nextgrocer.utils.ChildAnimationExample;
+import com.app.nextgrocer.utils.CommonUtils;
 import com.app.nextgrocer.utils.Constants;
 import com.app.nextgrocer.utils.SpacesItemDecoration;
 import com.app.nextgrocer.utils.ViewModelProviderFactory;
-import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 
@@ -73,7 +78,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
     @Inject
     HomeProductsAdapter homeProductsAdapter;
 
-
     @Inject
     GridLayoutManager gridLayoutManager;
 
@@ -94,6 +98,9 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
 
     private HomeFragmentViewModel homeFragmentViewModel;
 
+
+    ProgressDialog progressDialog;
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_home;
@@ -102,19 +109,27 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
     @Override
     public HomeFragmentViewModel getViewModel() {
         homeFragmentViewModel = ViewModelProviders.of(this,factory).get(HomeFragmentViewModel.class);
+        subscribeToLiveDataResponse();
         return homeFragmentViewModel;
     }
 
     @Override
     public void setUp() {
-
         loadSliders();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        progressDialog = CommonUtils.showLoadingDialog(getActivity());
         super.onCreate(savedInstanceState);
         homeFragmentViewModel.setNavigator(this);
+    }
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
 
     }
 
@@ -131,10 +146,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
     private void loadSliders()
     {
 
-        tv_featured.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "bebasNeue.otf"));
-        tv_newarrivals.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "bebasNeue.otf"));
-        btn_viewall1.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "roboto_regular.ttf"));
-        btn_viewall2.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "roboto_regular.ttf"));
+        tv_featured.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fredokaOne.ttf"));
+        tv_newarrivals.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fredokaOne.ttf"));
+        btn_viewall1.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fredokaOne.ttf"));
+        btn_viewall2.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fredokaOne.ttf"));
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         hideSoftKeyboard();
@@ -163,19 +178,21 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
 
 
 
-    @OnClick({R.id.btn_viewall1,R.id.btn_viewall2,R.id.iv_back_cat,R.id.iv_next_cat})
+    @OnClick({R.id.btn_viewall1,R.id.btn_viewall2,R.id.iv_back_cat,R.id.iv_next_cat,R.id.iv_cart})
     void onClickEvent(View view) {
         switch (view.getId()) {
 
             case R.id.btn_viewall1 :
 
                 Intent intent = new Intent(getActivity(), ProductListActivity.class);
+                intent.putExtra("name",Constants.FEATURED_PRODUCTS);
                 startActivity(intent);
                 break;
 
             case R.id.btn_viewall2 :
 
                 Intent intent2 = new Intent(getActivity(), ProductListActivity.class);
+                intent2.putExtra("name",Constants.NEWARRIVAL_PRODUCTS);
                 startActivity(intent2);
                 break;
 
@@ -193,6 +210,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
                 rv_categories.smoothScrollToPosition(linearLayoutManager.findLastVisibleItemPosition() + 1);
 
                // rv_categories.getLayoutManager().scrollToPosition(categoryLayoutManager.findFirstVisibleItemPosition() - 1);
+                break;
+
+            case R.id.iv_cart :
+                startActivity(new Intent(getActivity(), CartActivity.class));
                 break;
         }
     }
@@ -212,8 +233,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
         linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         rv_categories.setLayoutManager(linearLayoutManager);
         rv_categories.setItemAnimator(new DefaultItemAnimator());
-        subscribeToLiveDataCategories();
-
 
 
         /* For Featured Products */
@@ -221,8 +240,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
         rv_featured.setNestedScrollingEnabled(false);
         rv_featured.setLayoutManager(gridLayoutManager);
         rv_featured.setItemAnimator(new DefaultItemAnimator());
-        subscribeToLiveDataFeaturedProducts();
-
 
 
         /* For New Arrival Products */
@@ -231,13 +248,8 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
         rv_new_arrivals.setNestedScrollingEnabled(false);
         rv_new_arrivals.setLayoutManager(linearLayoutManager1);
         rv_new_arrivals.setItemAnimator(new DefaultItemAnimator());
-        subscribeToLiveDataNewArrivalProducts();
-
-
 
         /* Fetch sliders */
-        subscribeToLiveDataSliders();
-
 
 
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
@@ -281,6 +293,40 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
 
     }
 
+
+    private void subscribeToLiveDataResponse()
+    {
+        homeFragmentViewModel.getHomeResponse().observe(this, new Observer<ApiResponse>() {
+            @Override
+            public void onChanged(ApiResponse apiResponse) {
+                switch (apiResponse.status) {
+
+                    case LOADING:
+                        System.out.println("called loading");
+                        progressDialog.show();
+                        break;
+
+                    case SUCCESS:
+                        System.out.println("called success");
+                        progressDialog.dismiss();
+                        subscribeToLiveDataCategories();
+
+                        break;
+
+                    case ERROR:
+                        progressDialog.dismiss();
+
+                        Toast.makeText(getActivity(),apiResponse.error.getMessage(), Toast.LENGTH_SHORT).show();
+                        break;
+
+                    default:
+                        break;
+                }
+
+            }
+        });
+    }
+
     private void subscribeToLiveDataCategories() {
         homeFragmentViewModel.getCategoriesList().observe(this, new Observer<List<HomeApiResponse.CategoryBean>>() {
             @Override
@@ -295,10 +341,15 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
         categoryAdapter.setAdapterListener(new HomeCategoryAdapter.HomeCategoryListener() {
             @Override
             public void onItemClick(HomeApiResponse.CategoryBean item, int position) {
-                Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
+                Intent intent = new Intent(getActivity(), ProductListActivity.class);
+                intent.putExtra("name",item.getName());
+                intent.putExtra("cat_id",item.getCategory_id());
                 startActivity(intent);
             }
         });
+
+        subscribeToLiveDataFeaturedProducts();
+
     }
 
 
@@ -320,6 +371,8 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
                 startActivity(intent);
             }
         });
+        subscribeToLiveDataNewArrivalProducts();
+
     }
 
 
@@ -338,9 +391,16 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
             @Override
             public void onItemClick(HomeApiResponse.NewarrivalBean item, int position) {
                 Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
+                intent.putExtra("pro_id",item.getProduct_id());
                 startActivity(intent);
             }
         });
+
+        subscribeToLiveDataSliders();
     }
+
+
+
+
 
 }

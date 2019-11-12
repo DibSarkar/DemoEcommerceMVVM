@@ -28,10 +28,22 @@ public final class ApiEndPoint {
 
     public static final String HOME_URL = Constants.BASE_URL+"home/homePage";
 
+    public static final String PRODUCT_LIST_URL = Constants.BASE_URL+"product/allProduct";
+
     public static final String PRODUCT_DETAILS_URL = Constants.BASE_URL+"product/productDetails";
 
+    public static final String CATEGORIES_URL = Constants.BASE_URL+"category/allcategory";
 
-    private ApiEndPoint() {
-        // This class is not publicly instantiable
-    }
+    public static final String CAT_PRODUCT_URL = Constants.BASE_URL+"category/catProduct";
+
+    public static final String REGISTER_URL = Constants.BASE_URL+"customer/add";
+
+    public static final String LOGIN_URL = Constants.BASE_URL+"customer/login";
+
+    public static final String MYACCOUNT_URL = Constants.BASE_URL+"customer/myAccount";
+
+    public static final String EDIT_PROFILE_URL = Constants.BASE_URL+"customer/editAccount";
+
+    public static final String CHANGE_PASS_URL = Constants.BASE_URL+"customer/changePassword";
+
 }

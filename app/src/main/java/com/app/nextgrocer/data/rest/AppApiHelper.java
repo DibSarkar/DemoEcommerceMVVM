@@ -17,9 +17,20 @@
 package com.app.nextgrocer.data.rest;
 
 
+import com.app.nextgrocer.data.model.CommonResponse;
+import com.app.nextgrocer.data.model.categories.CategoriesResponse;
+import com.app.nextgrocer.data.model.changePass.ChangePassRequest;
 import com.app.nextgrocer.data.model.home.HomeApiResponse;
 import com.app.nextgrocer.data.model.product_details.ProductDetailsRequest;
 import com.app.nextgrocer.data.model.product_details.ProductDetailsResponse;
+import com.app.nextgrocer.data.model.product_list.CategoriesProductResponse;
+import com.app.nextgrocer.data.model.product_list.CategoryProductRequest;
+import com.app.nextgrocer.data.model.product_list.ProductListResponse;
+import com.app.nextgrocer.data.model.profile.EditProfileRequest;
+import com.app.nextgrocer.data.model.profile.ProfileRequest;
+import com.app.nextgrocer.data.model.register_login.LoginRequest;
+import com.app.nextgrocer.data.model.register_login.RegisterLoginResponse;
+import com.app.nextgrocer.data.model.register_login.RegisterRequest;
 import com.app.nextgrocer.utils.Constants;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 
@@ -46,7 +57,7 @@ public class AppApiHelper implements ApiHelper {
     @Override
     public Observable<HomeApiResponse> getHomeData() {
             return Rx2AndroidNetworking.post(ApiEndPoint.HOME_URL)
-                   // .addHeaders(mApiHeader.getProtectedApiHeader())
+                   //.addHeaders(mApiHeader.getProtectedApiHeader())
                     .addQueryParameter("api_token", Constants.API_TOKEN)
                     .build()
                     .getObjectObservable(HomeApiResponse.class);
@@ -60,6 +71,88 @@ public class AppApiHelper implements ApiHelper {
                 .addQueryParameter("api_token", Constants.API_TOKEN)
                 .build()
                 .getObjectSingle(ProductDetailsResponse.class);
+    }
+
+    @Override
+    public Observable<ProductListResponse> getProductList(String sort, String order) {
+         return Rx2AndroidNetworking.post(ApiEndPoint.PRODUCT_LIST_URL)
+                // .addHeaders(mApiHeader.getProtectedApiHeader())
+                 .addQueryParameter("api_token", Constants.API_TOKEN)
+                 .addQueryParameter("sort",sort)
+                 .addQueryParameter("order",order)
+                 .build()
+                 .getObjectObservable(ProductListResponse.class);
+    }
+
+    @Override
+    public Observable<CategoriesResponse> getCategoryList() {
+        return Rx2AndroidNetworking.post(ApiEndPoint.CATEGORIES_URL)
+                // .addHeaders(mApiHeader.getProtectedApiHeader())
+                .addQueryParameter("api_token", Constants.API_TOKEN)
+                .build()
+                .getObjectObservable(CategoriesResponse.class);
+    }
+
+    @Override
+    public Observable<CategoriesProductResponse> getCategoryProductList(CategoryProductRequest categoryRequest,String sort, String order) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.CAT_PRODUCT_URL)
+                .addBodyParameter(categoryRequest)
+                .addQueryParameter("sort",sort)
+                .addQueryParameter("order",order)
+                // .addHeaders(mApiHeader.getProtectedApiHeader())
+                .addQueryParameter("api_token", Constants.API_TOKEN)
+                .build()
+                .getObjectObservable(CategoriesProductResponse.class);
+    }
+
+    @Override
+    public Single<RegisterLoginResponse> register(RegisterRequest registerRequest) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.REGISTER_URL)
+                .addBodyParameter(registerRequest)
+                // .addHeaders(mApiHeader.getProtectedApiHeader())
+                .addQueryParameter("api_token", Constants.API_TOKEN)
+                .build()
+                .getObjectSingle(RegisterLoginResponse.class);
+    }
+
+    @Override
+    public Single<RegisterLoginResponse> login(LoginRequest registerRequest) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.LOGIN_URL)
+                .addBodyParameter(registerRequest)
+                // .addHeaders(mApiHeader.getProtectedApiHeader())
+                .addQueryParameter("api_token", Constants.API_TOKEN)
+                .build()
+                .getObjectSingle(RegisterLoginResponse.class);
+    }
+
+    @Override
+    public Single<RegisterLoginResponse> getProfile(ProfileRequest profileRequest) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.MYACCOUNT_URL)
+                .addBodyParameter(profileRequest)
+                // .addHeaders(mApiHeader.getProtectedApiHeader())
+                .addQueryParameter("api_token", Constants.API_TOKEN)
+                .build()
+                .getObjectSingle(RegisterLoginResponse.class);
+    }
+
+    @Override
+    public Single<RegisterLoginResponse> editProfile(EditProfileRequest editProfileRequest) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.EDIT_PROFILE_URL)
+                .addBodyParameter(editProfileRequest)
+                // .addHeaders(mApiHeader.getProtectedApiHeader())
+                .addQueryParameter("api_token", Constants.API_TOKEN)
+                .build()
+                .getObjectSingle(RegisterLoginResponse.class);
+    }
+
+    @Override
+    public Single<CommonResponse> changePass(ChangePassRequest changePassRequest) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.CHANGE_PASS_URL)
+                .addBodyParameter(changePassRequest)
+                // .addHeaders(mApiHeader.getProtectedApiHeader())
+                .addQueryParameter("api_token", Constants.API_TOKEN)
+                .build()
+                .getObjectSingle(CommonResponse.class);
     }
 
     @Override

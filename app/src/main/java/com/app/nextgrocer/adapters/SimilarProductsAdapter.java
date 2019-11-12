@@ -84,9 +84,14 @@ public class SimilarProductsAdapter extends RecyclerView.Adapter<SimilarProducts
                 .load(newarrivalBean.getThumb())
                 .placeholder(R.drawable.featured_pro1)
                 .into(holder.iv_pro);
+
+        holder.tv_product_name.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_sell_price.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_mrp_price.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+      /*
         holder.tv_product_name.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "roboto_regular.ttf"));
         holder.tv_sell_price.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "robotoMedium.ttf"));
-        holder.tv_mrp_price.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "roboto_regular.ttf"));
+        holder.tv_mrp_price.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "roboto_regular.ttf"));*/
         holder.tv_mrp_price.setPaintFlags( holder.tv_mrp_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
 

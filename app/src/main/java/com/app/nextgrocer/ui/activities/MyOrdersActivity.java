@@ -77,7 +77,8 @@ public class MyOrdersActivity extends BaseActivity {
         rv_myorders.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv_myorders.setItemAnimator(new DefaultItemAnimator());
         rv_myorders.setAdapter(myOrdersAdapter);
-        tv_header.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
+        tv_header.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        //tv_header.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
     }
 
     @Override

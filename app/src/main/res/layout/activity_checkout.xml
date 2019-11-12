@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:text="CHECKOUT"
                     android:layout_centerInParent="true"
-                    android:textSize="@dimen/_20sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:paddingRight="@dimen/_25sdp"
                     android:textColor="#fff"
                     android:gravity="center"
@@ -114,7 +114,7 @@
                 android:ems="7"
                 android:ellipsize="end"
                 android:id="@+id/tv_delivery_label"
-                android:textSize="@dimen/_13sdp"
+                android:textSize="@dimen/_11sdp"
                 android:text="DELIVERY DATE &amp; TIME"
                 android:layout_height="wrap_content"/>
 
@@ -132,7 +132,7 @@
                android:text="15 SEP 2019"
                android:id="@+id/tv_date"
                android:textColor="@color/black"
-               android:textSize="@dimen/_12sdp"
+               android:textSize="@dimen/_10sdp"
                android:layout_height="wrap_content"/>
            <TextView
                android:layout_width="wrap_content"
@@ -140,7 +140,7 @@
                android:layout_marginTop="@dimen/_3sdp"
                android:id="@+id/tv_fixed_time"
                android:textColor="@color/desc_color"
-               android:textSize="@dimen/_12sdp"
+               android:textSize="@dimen/_10sdp"
                android:layout_height="wrap_content"/>
            <TextView
                android:layout_width="wrap_content"
@@ -148,7 +148,7 @@
                android:layout_marginTop="@dimen/_3sdp"
               android:id="@+id/tv_time"
                android:textColor="@color/desc_color"
-               android:textSize="@dimen/_12sdp"
+               android:textSize="@dimen/_10sdp"
                android:layout_height="wrap_content"/>
 
 
@@ -171,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
+                    android:textSize="@dimen/_8sdp"
                     android:text="CHANGE"
                     android:id="@+id/tv_change_del"
                     android:textColor="@color/change_text_color" />
@@ -223,7 +223,7 @@
                         android:ellipsize="end"
                         android:id="@+id/tv_billing_label"
 
-                        android:textSize="@dimen/_13sdp"
+                        android:textSize="@dimen/_11sdp"
                         android:text="BILLING ADDRESS"
                         android:layout_height="wrap_content"/>
 
@@ -241,7 +241,7 @@
                             android:layout_width="wrap_content"
                             android:text="Dib Sarkar"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="@dimen/_10sdp"
                             android:id="@+id/tv_bill_name"
                             android:layout_height="wrap_content"/>
                         <TextView
@@ -249,7 +249,7 @@
                             android:text="Sector V, Brainware building 24-parganas 700091"
                             android:layout_marginTop="@dimen/_3sdp"
                             android:textColor="@color/desc_color"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="@dimen/_10sdp"
                             android:id="@+id/tv_bill_address"
                             android:layout_height="wrap_content"/>
 
@@ -262,7 +262,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="@dimen/_12sdp"
+                                android:textSize="@dimen/_10sdp"
                                 android:text="Mobile : "
                                 android:id="@+id/tv_bill_mobile_label"
                                 android:textColor="#2e2e2e"
@@ -297,7 +297,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginRight="@dimen/_5sdp"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_8sdp"
                        android:id="@+id/tv_change_bill"
                         android:text="CHANGE"
                         android:textColor="@color/change_text_color" />
@@ -348,7 +348,7 @@
                         android:ellipsize="end"
                         android:id="@+id/tv_shipping_label"
 
-                        android:textSize="@dimen/_13sdp"
+                        android:textSize="@dimen/_11sdp"
                         android:text="SHIPPING ADDRESS"
                         android:layout_height="wrap_content"/>
 
@@ -366,7 +366,7 @@
                             android:layout_width="wrap_content"
                             android:text="Dib Sarkar"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="@dimen/_10sdp"
                             android:id="@+id/tv_shipp_name"
                             android:layout_height="wrap_content"/>
                         <TextView
@@ -374,7 +374,7 @@
                             android:text="Sector V, Brainware building 24-parganas 700091"
                             android:layout_marginTop="@dimen/_3sdp"
                             android:textColor="@color/desc_color"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="@dimen/_10sdp"
                             android:id="@+id/tv_shipp_address"
                             android:layout_height="wrap_content"/>
                         <LinearLayout
@@ -386,7 +386,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="@dimen/_12sdp"
+                                android:textSize="@dimen/_10sdp"
                                 android:text="Mobile : "
                                 android:id="@+id/tv_shipp_mobile_label"
                                 android:textColor="#2e2e2e"
@@ -396,7 +396,7 @@
                                 android:layout_width="wrap_content"
                                 android:text="8240379920"
                                 android:textColor="@color/desc_color"
-                                android:textSize="@dimen/_12sdp"
+                                android:textSize="@dimen/_10sdp"
                                 android:id="@+id/tv_shipp_mobile_text"
 
                                 android:layout_height="wrap_content"/>
@@ -421,7 +421,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginRight="@dimen/_5sdp"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_8sdp"
                         android:id="@+id/tv_change_ship"
                         android:text="CHANGE"
                         android:textColor="@color/change_text_color" />
@@ -471,7 +471,7 @@
                 android:ellipsize="end"
                 android:id="@+id/tv_special_label"
 
-                android:textSize="@dimen/_13sdp"
+                android:textSize="@dimen/_11sdp"
                 android:text="SPECIAL INSTRUCTIONS"
                 android:layout_height="wrap_content"/>
 
@@ -494,7 +494,7 @@
                     android:paddingTop="@dimen/_8sdp"
                    android:id="@+id/edt_special"
                     android:paddingBottom="@dimen/_5sdp"
-                    android:textSize="@dimen/_11sdp"
+                    android:textSize="@dimen/_9sdp"
                     android:background="@android:color/transparent"
                     android:layout_height="match_parent"/>
 
@@ -533,7 +533,7 @@
                     android:ellipsize="end"
                     android:id="@+id/tv_payment_label"
 
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_11sdp"
                     android:text="PAYMENT OPTIONS"
                     android:layout_height="wrap_content"/>
                 <LinearLayout
@@ -560,7 +560,7 @@
                             android:text="COD"
                             android:id="@+id/rb_cod"
                             android:textColor="@color/desc_color"
-                            android:textSize="@dimen/_14sdp"
+                            android:textSize="@dimen/_11sdp"
                             style="@style/RadioButton.Custom"
                             android:layout_height="wrap_content"/>
 
@@ -570,7 +570,7 @@
                             android:text="Online"
                             android:id="@+id/rb_online"
                             android:textColor="@color/desc_color"
-                            android:textSize="@dimen/_14sdp"
+                            android:textSize="@dimen/_11sdp"
                             style="@style/RadioButton.Custom"
                             android:layout_height="wrap_content"/>
 
@@ -591,7 +591,7 @@
         android:textAllCaps="false"
         android:textColor="#fff"
         android:id="@+id/btn_place"
-        android:textSize="@dimen/_16sdp"
+        android:textSize="@dimen/_14sdp"
         android:background="@drawable/button_mix_color"
         android:layout_alignParentBottom="true"
         android:layout_height="@dimen/_42sdp"/>

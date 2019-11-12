@@ -65,7 +65,9 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
                 .placeholder(R.drawable.category1)
                 .centerCrop()
                 .into(holder.iv_cat);
-        holder.tv_category.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "robotoMedium.ttf"));
+
+        holder.tv_category.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        //  holder.tv_category.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "robotoMedium.ttf"));
 
     }
 

@@ -1,10 +1,12 @@
 package com.app.nextgrocer.ui.fragments.categories;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
@@ -14,10 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.nextgrocer.R;
+import com.app.nextgrocer.data.model.categories.CategoriesResponse;
+import com.app.nextgrocer.data.rest.ApiResponse;
 import com.app.nextgrocer.shared.BaseFragment;
 import com.app.nextgrocer.ui.activities.productDetails.ProductDetailsActivity;
 import com.app.nextgrocer.adapters.CategoryAdapter;
 import com.app.nextgrocer.local_models.LocalBean;
+import com.app.nextgrocer.ui.activities.productList.ProductListActivity;
+import com.app.nextgrocer.utils.CommonUtils;
 import com.app.nextgrocer.utils.Constants;
 import com.app.nextgrocer.utils.SpacesItemDecoration;
 import com.app.nextgrocer.utils.ViewModelProviderFactory;
@@ -47,10 +53,13 @@ public class CategoriesFragment extends BaseFragment<CategoriesViewModel> implem
 
     CategoriesViewModel categoriesViewModel;
 
+    ProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        progressDialog = CommonUtils.showLoadingDialog(getActivity());
         super.onCreate(savedInstanceState);
+
     }
     public static CategoriesFragment newInstance() {
         System.out.println("called fragment");
@@ -77,13 +86,16 @@ public class CategoriesFragment extends BaseFragment<CategoriesViewModel> implem
     @Override
     public CategoriesViewModel getViewModel() {
         categoriesViewModel = ViewModelProviders.of(this,factory).get(CategoriesViewModel.class);
+        subscribeToLiveDataResponse();
         return categoriesViewModel;
     }
 
     @Override
     public void setUp()
     {
-        tv_shop_by_cat.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "bebasNeue.otf"));
+        tv_shop_by_cat.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fredokaOne.ttf"));
+
+//        tv_shop_by_cat.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "bebasNeue.otf"));
 
         rv_categories.setHasFixedSize(true);
         rv_categories.setNestedScrollingEnabled(false);
@@ -95,12 +107,15 @@ public class CategoriesFragment extends BaseFragment<CategoriesViewModel> implem
 
         categoryAdapter.setAdapterListener(new CategoryAdapter.CategoryListener() {
             @Override
-            public void onItemClick(LocalBean item, int position) {
-                Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
+            public void onItemClick(CategoriesResponse.DataBean item, int position) {
+                Intent intent = new Intent(getActivity(), ProductListActivity.class);
+                intent.putExtra("cat_id",item.getId());
+                intent.putExtra("name",item.getName());
+
                 startActivity(intent);
             }
         });
-        subscribeToLiveDataCategories();
+
     }
 
     @Override
@@ -111,13 +126,47 @@ public class CategoriesFragment extends BaseFragment<CategoriesViewModel> implem
 
     private void subscribeToLiveDataCategories()
     {
-        categoriesViewModel.getCategories().observe(this, new Observer<List<LocalBean>>() {
+        categoriesViewModel.getCategories().observe(this, new Observer<List<CategoriesResponse.DataBean>>() {
             @Override
-            public void onChanged(List<LocalBean> localBeans) {
+            public void onChanged(List<CategoriesResponse.DataBean> localBeans) {
 
                 categoryAdapter.addItems(localBeans);
                 rv_categories.setAdapter(categoryAdapter);
             }
         });
+    }
+
+    private void subscribeToLiveDataResponse()
+    {
+
+        categoriesViewModel.getResponseLiveData().observe(this, new Observer<ApiResponse>() {
+            @Override
+            public void onChanged(ApiResponse apiResponse) {
+                System.out.println("api statys"+" "+apiResponse.status);
+                switch (apiResponse.status) {
+                    case LOADING:
+                        System.out.println("called loading");
+                        progressDialog.show();
+                        break;
+
+                    case SUCCESS:
+                        System.out.println("called success");
+                        progressDialog.dismiss();
+                        subscribeToLiveDataCategories();
+                        break;
+
+                    case ERROR:
+                        progressDialog.dismiss();
+
+                        Toast.makeText(getActivity(), apiResponse.error.getMessage(), Toast.LENGTH_SHORT).show();
+                        break;
+
+                    default:
+                        break;
+                }
+
+            }
+        });
+
     }
 }

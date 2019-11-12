@@ -154,6 +154,35 @@ public class CheckoutActivity extends BaseActivity {
         rv_checkout.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv_checkout.setItemAnimator(new DefaultItemAnimator());
         rv_checkout.setAdapter(checkoutAdapter);
+
+
+        tv_header.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_delivery_label.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_billing_label.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_shipping_label.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_special_label.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_payment_label.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_change_bill.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_change_del.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_change_ship.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        btn_place.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_date.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_fixed_time.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_time.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_bill_name.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_bill_address.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_bill_mobile_label.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_bill_mobile_text.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_shipp_name.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_shipp_address.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_shipp_mobile_label.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_shipp_mobile_text.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        edt_special.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        rb_cod.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        rb_online.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+
+
+/*
         tv_header.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
         tv_delivery_label.setTypeface(Typeface.createFromAsset(getAssets(), "robotoMedium.ttf"));
         tv_billing_label.setTypeface(Typeface.createFromAsset(getAssets(), "robotoMedium.ttf"));
@@ -177,7 +206,7 @@ public class CheckoutActivity extends BaseActivity {
         tv_shipp_mobile_text.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
         edt_special.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
         rb_cod.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
-        rb_online.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
+        rb_online.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));*/
 
 
     }

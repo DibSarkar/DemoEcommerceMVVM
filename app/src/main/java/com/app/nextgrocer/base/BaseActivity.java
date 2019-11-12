@@ -22,6 +22,7 @@ import com.app.nextgrocer.utils.NetworkUtils;
 import butterknife.Unbinder;
 import dagger.android.AndroidInjection;
 
+
 public abstract class BaseActivity <V extends BaseViewModel> extends AppCompatActivity  implements BaseFragment.Callback
        {
 
@@ -68,6 +69,8 @@ public abstract class BaseActivity <V extends BaseViewModel> extends AppCompatAc
         //performDataBinding();
     }
 
+
+
    public void setUnBinder(Unbinder unBinder) {
        mUnBinder = unBinder;
    }
@@ -103,7 +106,13 @@ public abstract class BaseActivity <V extends BaseViewModel> extends AppCompatAc
         }
     }
 
-    public boolean isNetworkConnected() {
+           public  Context getContext()
+           {
+               final Context applicationContext = getApplicationContext();
+               return applicationContext;
+           }
+
+           public boolean isNetworkConnected() {
         return NetworkUtils.isNetworkConnected(getApplicationContext());
     }
 
@@ -145,5 +154,9 @@ public abstract class BaseActivity <V extends BaseViewModel> extends AppCompatAc
 
            }
 
+       /*    @Override
+           protected void attachBaseContext(Context newBase) {
+               super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+           }*/
 
 }

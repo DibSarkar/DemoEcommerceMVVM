@@ -1,15 +1,21 @@
 package com.app.nextgrocer.ui.fragments.home;
 
+import android.app.Application;
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.app.nextgrocer.data.model.home.HomeApiResponse;
+import com.app.nextgrocer.data.rest.ApiResponse;
 import com.app.nextgrocer.shared.BaseViewModel;
 import com.app.nextgrocer.data.DataManager;
 import com.app.nextgrocer.local_models.LocalBean;
+import com.app.nextgrocer.utils.ConnectionDetector;
 import com.app.nextgrocer.utils.rx.SchedulerProvider;
+import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +26,7 @@ public class HomeFragmentViewModel extends BaseViewModel<HomeFragmentNavigator> 
     private final MutableLiveData<List<HomeApiResponse.FeatureBean>> featuredProductsList = new MutableLiveData<>();
     private final MutableLiveData<List<HomeApiResponse.NewarrivalBean>> new_arrival_productsList = new MutableLiveData<>();
     private final MutableLiveData<List<HomeApiResponse.BannerBean.TopbannerImageBean>> slider_list = new MutableLiveData<>();
-
+    private final MutableLiveData<ApiResponse> responseLiveData = new MutableLiveData<>();
     private final ArrayList<HomeApiResponse.CategoryBean> categories = new ArrayList<>();
     private final ArrayList<LocalBean> featured_products = new ArrayList<>();
     private final ArrayList<LocalBean> new_arrival_products = new ArrayList<>();
@@ -28,12 +34,29 @@ public class HomeFragmentViewModel extends BaseViewModel<HomeFragmentNavigator> 
 
     private static final String TAG = "HomeFragmentViewModel";
 
-    public HomeFragmentViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
-        super(dataManager, schedulerProvider);
-        fetchHomeData();
+    private Context context;
 
+    private final Application application;
+
+    private ConnectionDetector cd;
+    public HomeFragmentViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, Context context, Application application) {
+        super(dataManager, schedulerProvider,context, application);
+
+        context = getContext();
+        this.application = application;
+        System.out.println("context home"+" "+context);
+        cd = new ConnectionDetector(this.application.getApplicationContext());
+        if(cd.isConnectedToInternet()) {
+            fetchHomeData();
+        }
+        else {
+            Toast.makeText(application.getApplicationContext(),"No Internet connection",Toast.LENGTH_SHORT).show();
+        }
     }
 
+    public MutableLiveData<ApiResponse> getHomeResponse() {
+        return responseLiveData;
+    }
 
     private List<LocalBean> loadNewArrivalProducts()
     {
@@ -49,32 +72,18 @@ public class HomeFragmentViewModel extends BaseViewModel<HomeFragmentNavigator> 
     private void fetchHomeData()
     {
 
-
-
-
-     /*   getCompositeDisposable().add(Observable.fromArray(loadNewArrivalProducts())
-                .doOnNext(list -> Log.d(TAG, "loadNewArrivalProducts: " + list.size()))
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(new_arrival -> {
-                    if (new_arrival != null) {
-                        Log.d(TAG, "v: " + new_arrival.size());
-
-                        new_arrival_productsList.setValue(new_arrival);
-                    }
-                }, throwable -> {
-                    Log.d(TAG, "loadNewArrivalProducts: " + throwable);
-                }));
-*/
-        getCompositeDisposable().add(getDataManager()
+        responseLiveData.setValue(ApiResponse.loading());
+        getCompositeDisposable().add(
+                getDataManager()
                 .getHomeData()
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(homeApiResponse -> {
                             if (homeApiResponse != null && homeApiResponse.getResponseCode() != 0) {
-
+                                responseLiveData.setValue(ApiResponse.success());
                                 if(homeApiResponse.getCategory().size()>0)
                                 {
+
                                     categoryList.setValue(homeApiResponse.getCategory());
                                 }
                                 else {
@@ -109,8 +118,15 @@ public class HomeFragmentViewModel extends BaseViewModel<HomeFragmentNavigator> 
 
                                 }
                             }
+                            else {
+                                Toast.makeText(application.getApplicationContext(),homeApiResponse.getResponseText(),Toast.LENGTH_SHORT).show();
+                                responseLiveData.setValue(ApiResponse.success());
+                            }
+
+
 
                 }, throwable -> {
+                    responseLiveData.setValue(ApiResponse.error(throwable));
                     Log.d(TAG, "loadHomeProducts: " + throwable);
                 }));
 

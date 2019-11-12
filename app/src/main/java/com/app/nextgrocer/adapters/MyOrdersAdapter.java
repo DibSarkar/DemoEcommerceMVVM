@@ -48,7 +48,24 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.ViewHo
 
         final LocalBean mDataBean = mValues.get(position);
 
-        holder.tv_orderId.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "robotoMedium.ttf"));
+
+
+        holder.tv_orderId.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_orderId_text.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_date.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_date_text.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_order_status_text.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_view_details.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_delivery_label.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_bill_name.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_bill_address.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_ordered.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_shipped.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_out_for_del.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_arrival.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+
+
+     /*   holder.tv_orderId.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "robotoMedium.ttf"));
         holder.tv_orderId_text.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "roboto_regular.ttf"));
         holder.tv_date.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "robotoMedium.ttf"));
         holder.tv_date_text.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "roboto_regular.ttf"));
@@ -61,7 +78,7 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.ViewHo
         holder.tv_shipped.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "roboto_regular.ttf"));
         holder.tv_out_for_del.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "roboto_regular.ttf"));
         holder.tv_arrival.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "roboto_regular.ttf"));
-
+*/
 
     }
 

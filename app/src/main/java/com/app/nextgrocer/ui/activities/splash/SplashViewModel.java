@@ -16,6 +16,9 @@
 
 package com.app.nextgrocer.ui.activities.splash;
 
+import android.app.Application;
+import android.content.Context;
+
 import com.app.nextgrocer.shared.BaseViewModel;
 import com.app.nextgrocer.data.DataManager;
 import com.app.nextgrocer.utils.rx.SchedulerProvider;
@@ -32,13 +35,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class SplashViewModel extends BaseViewModel<SplashNavigator> {
 
-    public SplashViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
-        super(dataManager, schedulerProvider);
+    public SplashViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, Context context, Application application) {
+        super(dataManager, schedulerProvider,context,application);
     }
 
     public void init() {
         getCompositeDisposable().add(Completable.timer(3, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .subscribe(this::decideNextActivity));
+
 
 
     }

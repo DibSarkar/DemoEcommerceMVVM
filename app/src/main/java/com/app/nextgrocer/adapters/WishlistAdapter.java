@@ -78,11 +78,19 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
             holder.iv_pro.setImageResource(R.drawable.newarrival_pro2);
         }
 
+
+        holder.tv_offer.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_add.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_product_name.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_sell_price.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+        holder.tv_mrp_price.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
+
+/*
         holder.tv_offer.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "bebasNeue.otf"));
         holder.tv_add.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "robotoMedium.ttf"));
         holder.tv_product_name.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "roboto_regular.ttf"));
         holder.tv_sell_price.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "robotoMedium.ttf"));
-        holder.tv_mrp_price.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "roboto_regular.ttf"));
+        holder.tv_mrp_price.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "roboto_regular.ttf"));*/
         holder.tv_mrp_price.setPaintFlags( holder.tv_mrp_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
 

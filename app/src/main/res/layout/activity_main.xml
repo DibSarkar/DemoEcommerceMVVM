@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         app:labelVisibilityMode="labeled"
         style="@style/bnve"
+        app:itemIconSize="@dimen/_16sdp"
         app:itemHorizontalTranslationEnabled="false"
         app:itemIconTint="@drawable/bnve_color_selector"
         app:itemTextColor="@drawable/bnve_color_selector"

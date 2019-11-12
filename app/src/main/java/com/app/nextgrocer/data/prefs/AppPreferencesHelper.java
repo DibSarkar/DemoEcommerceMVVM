@@ -38,9 +38,15 @@ public class AppPreferencesHelper implements PreferencesHelper {
 
     private static final String PREF_KEY_CURRENT_USER_ID = "PREF_KEY_CURRENT_USER_ID";
 
-    private static final String PREF_KEY_CURRENT_USER_NAME = "PREF_KEY_CURRENT_USER_NAME";
+    private static final String PREF_KEY_CURRENT_USER_FIRST_NAME = "PREF_KEY_CURRENT_USER_FIRST_NAME";
 
-    private static final String PREF_KEY_CURRENT_USER_PROFILE_PIC_URL = "PREF_KEY_CURRENT_USER_PROFILE_PIC_URL";
+    private static final String PREF_KEY_CURRENT_USER_LAST_NAME = "PREF_KEY_CURRENT_USER_LAST_NAME";
+
+    private static final String PREF_KEY_CURRENT_USER_MOBILE =  "PREF_KEY_CURRENT_USER_MOBILE";
+
+    private static final String PREF_KEY_CURRENT_USER_SUBSCRIBE =  "PREF_KEY_CURRENT_USER_SUBSCRIBE";
+
+
 
     private static final String PREF_KEY_USER_LOGGED_IN_MODE = "PREF_KEY_USER_LOGGED_IN_MODE";
 
@@ -63,16 +69,56 @@ public class AppPreferencesHelper implements PreferencesHelper {
     }
 
     @Override
-    public Long getCurrentUserId() {
-        long userId = mPrefs.getLong(PREF_KEY_CURRENT_USER_ID, Constants.NULL_INDEX);
-        return userId == Constants.NULL_INDEX ? null : userId;
+    public String getFirstName() {
+        return mPrefs.getString(PREF_KEY_CURRENT_USER_FIRST_NAME,null);
     }
 
     @Override
-    public void setCurrentUserId(Long userId) {
-        long id = userId == null ? Constants.NULL_INDEX : userId;
-        mPrefs.edit().putLong(PREF_KEY_CURRENT_USER_ID, id).apply();
+    public void setFirstName(String firstName) {
+        mPrefs.edit().putString(PREF_KEY_CURRENT_USER_FIRST_NAME, firstName).apply();
     }
+
+    @Override
+    public String getLastName() {
+        return mPrefs.getString(PREF_KEY_CURRENT_USER_LAST_NAME,null);
+    }
+
+    @Override
+    public void setLastName(String lastName) {
+        mPrefs.edit().putString(PREF_KEY_CURRENT_USER_LAST_NAME, lastName).apply();
+
+    }
+
+    @Override
+    public String getMobileNo() {
+        return mPrefs.getString(PREF_KEY_CURRENT_USER_MOBILE,null);
+    }
+
+    @Override
+    public void setMobileNo(String mobileNo) {
+        mPrefs.edit().putString(PREF_KEY_CURRENT_USER_MOBILE, mobileNo).apply();
+    }
+
+    @Override
+    public String getCurrentUserId() {
+        return mPrefs.getString(PREF_KEY_CURRENT_USER_ID,null);
+    }
+
+    @Override
+    public void setCurrentUserId(String userId) {
+        mPrefs.edit().putString(PREF_KEY_CURRENT_USER_ID, userId).apply();
+    }
+
+    @Override
+    public boolean isSubscribe() {
+        return mPrefs.getBoolean(PREF_KEY_CURRENT_USER_SUBSCRIBE,false);
+    }
+
+    @Override
+    public void setSubscribe(boolean subscribe) {
+        mPrefs.edit().putBoolean(PREF_KEY_CURRENT_USER_SUBSCRIBE, subscribe).apply();
+    }
+
 
     @Override
     public int getCurrentUserLoggedInMode() {
@@ -85,23 +131,5 @@ public class AppPreferencesHelper implements PreferencesHelper {
         mPrefs.edit().putInt(PREF_KEY_USER_LOGGED_IN_MODE, mode.getType()).apply();
     }
 
-    @Override
-    public String getCurrentUserName() {
-        return mPrefs.getString(PREF_KEY_CURRENT_USER_NAME, null);
-    }
 
-    @Override
-    public void setCurrentUserName(String userName) {
-        mPrefs.edit().putString(PREF_KEY_CURRENT_USER_NAME, userName).apply();
-    }
-
-    @Override
-    public String getCurrentUserProfilePicUrl() {
-        return mPrefs.getString(PREF_KEY_CURRENT_USER_PROFILE_PIC_URL, null);
-    }
-
-    @Override
-    public void setCurrentUserProfilePicUrl(String profilePicUrl) {
-        mPrefs.edit().putString(PREF_KEY_CURRENT_USER_PROFILE_PIC_URL, profilePicUrl).apply();
-    }
 }

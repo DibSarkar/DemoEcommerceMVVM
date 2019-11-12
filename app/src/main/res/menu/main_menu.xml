@@ -24,8 +24,8 @@
         android:title="My Account"/>
 
     <item
-        android:id="@+id/nav_cart"
-        android:icon="@drawable/cart_menu"
-        android:title="Cart"/>
+        android:id="@+id/nav_notif"
+        android:icon="@drawable/notif_menu"
+        android:title="Notification"/>
 
 </menu>

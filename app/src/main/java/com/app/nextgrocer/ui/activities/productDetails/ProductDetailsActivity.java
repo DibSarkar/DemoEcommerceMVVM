@@ -1,5 +1,7 @@
 package com.app.nextgrocer.ui.activities.productDetails;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -7,14 +9,20 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.appcompat.widget.Toolbar;
@@ -30,11 +38,14 @@ import com.app.nextgrocer.adapters.NewArrivalsProductAdapter;
 import com.app.nextgrocer.adapters.SimilarProductsAdapter;
 import com.app.nextgrocer.base.BaseActivity;
 import com.app.nextgrocer.data.model.product_details.ProductDetailsResponse;
+import com.app.nextgrocer.data.rest.ApiResponse;
 import com.app.nextgrocer.local_models.LocalBean;
 import com.app.nextgrocer.ui.activities.CartActivity;
 import com.app.nextgrocer.ui.activities.home.MainNavigator;
 import com.app.nextgrocer.ui.activities.home.MainViewModel;
 import com.app.nextgrocer.utils.ChildAnimationExample;
+import com.app.nextgrocer.utils.CommonUtils;
+import com.app.nextgrocer.utils.ConnectionDetector;
 import com.app.nextgrocer.utils.Constants;
 import com.app.nextgrocer.utils.SpacesItemDecoration;
 import com.app.nextgrocer.utils.ViewModelProviderFactory;
@@ -42,10 +53,12 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.travijuu.numberpicker.library.NumberPicker;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -54,9 +67,9 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import dagger.android.support.HasSupportFragmentInjector;
 
-public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel> implements ProductDetailsNavigator {
+
+public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel> implements ProductDetailsNavigator,BaseSliderView.OnSliderClickListener {
 
 
     @BindView(R.id.np_count)
@@ -101,14 +114,23 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
     @BindView(R.id.tv_similar)
     TextView tv_similar;
 
+    @BindView(R.id.tv_select)
+    TextView tv_select;
+
     @BindView(R.id.btn_add)
     Button btn_add;
 
     @BindView(R.id.btn_wish)
     Button btn_wish;
 
+    @BindView(R.id.ll_similar)
+    LinearLayout ll_similar;
+
     @BindView(R.id.rb_product)
     AppCompatRatingBar appCompatRatingBar;
+
+    @BindView(R.id.spinner_select)
+    Spinner spinner_select;
 
     @Inject
     ViewModelProviderFactory factory;
@@ -120,6 +142,9 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
 
     @Inject
     SimilarProductsAdapter similarProductsAdapter;
+
+    ProgressDialog progressDialog;
+
 
 
     @Override
@@ -147,7 +172,7 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
     protected void setUp() {
         setUnBinder(ButterKnife.bind(this));
         productDetailsViewModel.setNavigator(this);
-
+        progressDialog = CommonUtils.showLoadingDialog(this);
         np_count.setValue(1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -161,7 +186,21 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
 
     public void updateUI()
     {
-        tv_header.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
+        tv_header.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_desc_title.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_offer.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_similar.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_mrp_price.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_reviews.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_desc.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_sell_price.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        btn_wish.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        btn_add.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_product_name.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_select.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+
+
+       /* tv_header.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
         tv_desc_title.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
         tv_offer.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
         tv_similar.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
@@ -171,7 +210,20 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
         tv_sell_price.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_bold.ttf"));
         btn_wish.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
         btn_add.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
-        tv_product_name.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
+        tv_product_name.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));*/
+
+/*        MySpinnerAdapter<String> foodadapter = ArrayAdapter.createFromResource(
+                this, R.array.array_name, R.layout.layout_item_variations);
+        foodadapter.setDropDownViewResource(R.layout.layout_item_variations);*/
+
+        MySpinnerAdapter adapter = new MySpinnerAdapter(
+                getContext(),
+                R.layout.layout_item_variations,
+                Arrays.asList(getResources().getStringArray(R.array.array_name))
+        );
+
+        spinner_select.setAdapter(adapter);
+
         setUpList();
 
     }
@@ -201,7 +253,10 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
         linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         rv_similar_products.setLayoutManager(linearLayoutManager);
         rv_similar_products.setItemAnimator(new DefaultItemAnimator());
+        subscribeToLiveDataResponse();
         loadSimilarProducts();
+
+
     }
 
 
@@ -213,7 +268,6 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
                 return true;
         }
         return super.onOptionsItemSelected(item);
-
     }
 
     private void subscribeToLiveDataSimilarProducts()
@@ -222,8 +276,14 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
              @Override
              public void onChanged(List<ProductDetailsResponse.RelatedProductBean> relatedProductBeans) {
 
-                 similarProductsAdapter.addItems(relatedProductBeans);
-                 rv_similar_products.setAdapter(similarProductsAdapter);
+                 if(relatedProductBeans.size()>0) {
+                     ll_similar.setVisibility(View.VISIBLE);
+                     similarProductsAdapter.addItems(relatedProductBeans);
+                     rv_similar_products.setAdapter(similarProductsAdapter);
+                 }
+                 else {
+                     ll_similar.setVisibility(View.GONE);
+                 }
              }
 
          });
@@ -232,6 +292,7 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
              @Override
              public void onItemClick(ProductDetailsResponse.RelatedProductBean item, int position) {
                  Intent intent = new Intent(getApplicationContext(), ProductDetailsActivity.class);
+                 intent.putExtra("pro_id",item.getProduct_id());
                  startActivity(intent);
              }
          });
@@ -254,7 +315,8 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
                        textSliderView
                                .description("")
                                .image(imageBeans.get(i).getThumb())
-                               .setScaleType(BaseSliderView.ScaleType.FitCenterCrop);
+                               .setScaleType(BaseSliderView.ScaleType.FitCenterCrop)
+                               .setOnSliderClickListener(ProductDetailsActivity.this);
                        textSliderView.bundle(new Bundle());
                        textSliderView.getBundle()
                                .putString("extra", imageBeans.get(i).getThumb());
@@ -264,9 +326,13 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
                    slider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
                    slider.setCustomAnimation(new ChildAnimationExample());
                    slider.setDuration(4000);
+
+
                }
            }
        });
+
+        subscribeToLiveDataSimilarProducts();
 
 
     }
@@ -306,7 +372,86 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
             tv_sell_price.setText(getApplicationContext().getResources().getString(R.string.Rs)+" "+price);
 
         }
-
-
     }
+
+
+    private void subscribeToLiveDataResponse()
+    {
+            productDetailsViewModel.getProductResponse().observe(this, new Observer<ApiResponse>() {
+                @Override
+                public void onChanged(ApiResponse apiResponse) {
+                    System.out.println("api statys"+" "+apiResponse.status);
+                    switch (apiResponse.status) {
+                        case LOADING:
+                            System.out.println("called loading");
+                            progressDialog.show();
+                            break;
+
+                        case SUCCESS:
+                            System.out.println("called success");
+                            progressDialog.dismiss();
+                            if(getIntent().getExtras()!=null) {
+                                subscribeToLiveDataSliders();
+
+
+                            }
+
+                            break;
+
+                        case ERROR:
+                            progressDialog.dismiss();
+
+                            Toast.makeText(getApplicationContext(), apiResponse.error.getMessage(), Toast.LENGTH_SHORT).show();
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            });
+    }
+
+    @Override
+    public void onSliderClick(BaseSliderView slider) {
+
+        if(slider.getBundle()!=null) {
+            System.out.println("slider click" + " " + slider.getBundle().get("extra"));
+            Bundle bundle = new Bundle();
+            bundle.putString("ZoomImage", String.valueOf(slider.getBundle().get("extra")));
+            Intent intent = new Intent(getApplicationContext(), ZoomActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+       // Toast.makeText(this,slider.getBundle().get("extra") + "",Toast.LENGTH_SHORT).show();
+    }
+
+    private static class MySpinnerAdapter extends ArrayAdapter<String> {
+        // Initialise custom font, for example:
+        Typeface font = Typeface.createFromAsset(getContext().getAssets(),
+                "fredokaOne.ttf");
+
+        // (In reality I used a manager which caches the Typeface objects)
+        // Typeface font = FontManager.getInstance().getFont(getContext(), BLAMBOT);
+
+        private MySpinnerAdapter(Context context, int resource, List<String> items) {
+            super(context, resource, items);
+        }
+
+        // Affects default (closed) state of the spinner
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TextView view = (TextView) super.getView(position, convertView, parent);
+            view.setTypeface(font);
+            return view;
+        }
+
+        // Affects opened state of the spinner
+        @Override
+        public View getDropDownView(int position, View convertView, ViewGroup parent) {
+            TextView view = (TextView) super.getDropDownView(position, convertView, parent);
+            view.setTypeface(font);
+            return view;
+        }
+    }
+
 }

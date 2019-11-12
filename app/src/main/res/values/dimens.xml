@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <dimen name="design_bottom_navigation_text_size" tools:override="true">10.4sp</dimen>
-    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">10.4sp</dimen>
-    <dimen name="design_bottom_navigation_active_icon_size"
-        tools:override="true">20sp</dimen>
+    <dimen name="design_bottom_navigation_text_size" tools:override="true">10sp</dimen>
+    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">10sp</dimen>
+    <dimen name="design_bottom_navigation_active_icon_size" tools:override="true">15sp</dimen>
     <dimen name="spacing">5dp</dimen>
     <dimen name="spacing1">6dp</dimen>
     <dimen name="spacing2">15dp</dimen>

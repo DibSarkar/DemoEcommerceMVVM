@@ -1,17 +1,17 @@
-package com.app.nextgrocer.ui.activities;
+package com.app.nextgrocer.ui.fragments;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.nextgrocer.R;
 import com.app.nextgrocer.adapters.WishlistAdapter;
 import com.app.nextgrocer.local_models.LocalBean;
-import com.app.nextgrocer.shared.BaseActivity;
 import com.app.nextgrocer.ui.activities.productDetails.ProductDetailsActivity;
 import com.app.nextgrocer.utils.Constants;
 import com.app.nextgrocer.utils.SpacesItemDecoration;
@@ -29,7 +28,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WishlistActivity extends BaseActivity {
+public class WishlistFragment extends Fragment {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -43,24 +42,42 @@ public class WishlistActivity extends BaseActivity {
     ArrayList<LocalBean> productList;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_wishlist);
+    }
+
+
+    public static WishlistFragment newInstance() {
+        System.out.println("called fragment");
+        WishlistFragment fragment = new WishlistFragment();
+        //Bundle args = new Bundle();
+        //args.putSerializable(PEOPLE_LIST, peopleBeansList);
+        //fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_wishlist, container, false);
+        ButterKnife.bind(this, view);
         setUp();
+        return view;
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
+
     protected void setUp() {
-        setUnbinder(ButterKnife.bind(this));
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.tool_arrow);
-        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_ATOP);
-        getSupportActionBar().setHomeAsUpIndicator(upArrow);
-        setTitle("");
+
         loadProducts();
     }
 
@@ -77,15 +94,18 @@ public class WishlistActivity extends BaseActivity {
         rv_wish_list.setHasFixedSize(true);
         rv_wish_list.addItemDecoration(new SpacesItemDecoration(spacingInPixels1, Constants.SPACE_PRODUCT_LIST));
         rv_wish_list.setNestedScrollingEnabled(false);
-        rv_wish_list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rv_wish_list.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         rv_wish_list.setItemAnimator(new DefaultItemAnimator());
         rv_wish_list.setAdapter(productListAdapter);
-        tv_header.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
+
+        tv_header.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fredokaOne.ttf"));
+
+        // tv_header.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "bebasNeue.otf"));
 
         productListAdapter.setAdapterListener(new WishlistAdapter.WishlistAdapterListener() {
             @Override
             public void onItemClick(LocalBean item, int position) {
-                Intent intent = new Intent(getApplicationContext(), ProductDetailsActivity.class);
+                Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
                 startActivity(intent);
 
     }
@@ -93,15 +113,6 @@ public class WishlistActivity extends BaseActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
 
-    }
 
 }

@@ -2,12 +2,14 @@ package com.app.nextgrocer.shared;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import com.app.nextgrocer.BuildConfig;
 
 
+import com.app.nextgrocer.R;
 import com.app.nextgrocer.di.component.DaggerAppComponent;
 import com.app.nextgrocer.utils.AppLogger;
 
@@ -17,6 +19,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import dagger.android.support.DaggerApplication;
+
 
 
 public class BaseApplication extends Application implements HasActivityInjector {
@@ -41,7 +44,13 @@ public class BaseApplication extends Application implements HasActivityInjector 
                 .inject(this);
 
         AppLogger.init();
-
+      /*  ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder()
+                                .setDefaultFontPath("fonts/bebasNeue.otf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());*/
         AndroidNetworking.initialize(getApplicationContext());
         if (BuildConfig.DEBUG) {
             AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BODY);
@@ -49,4 +58,6 @@ public class BaseApplication extends Application implements HasActivityInjector 
 
 
     }
+
+
 }

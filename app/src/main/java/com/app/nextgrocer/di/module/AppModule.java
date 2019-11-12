@@ -20,6 +20,8 @@ import android.app.Application;
 import android.content.Context;
 
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.app.nextgrocer.data.AppDataManager;
 import com.app.nextgrocer.data.DataManager;
 import com.app.nextgrocer.data.prefs.AppPreferencesHelper;
@@ -47,6 +49,8 @@ import dagger.Provides;
 @Module
 public class AppModule {
 
+
+
     @Provides
     @Singleton
     ApiHelper provideApiHelper(AppApiHelper appApiHelper) {
@@ -67,6 +71,7 @@ public class AppModule {
     Context provideContext(Application application) {
         return application;
     }
+
 
     @Provides
     @Singleton

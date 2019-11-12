@@ -30,19 +30,29 @@ public interface PreferencesHelper {
 
     void setCurrentUserEmail(String email);
 
-    Long getCurrentUserId();
+    String getFirstName();
 
-    void setCurrentUserId(Long userId);
+    void setFirstName(String firstName);
+
+    String getLastName();
+
+    void setLastName(String lastName);
+
+    String getMobileNo();
+
+    void setMobileNo(String mobileNo);
+
+    String getCurrentUserId();
+
+    void setCurrentUserId(String userId);
+
+    boolean isSubscribe();
+
+    void setSubscribe(boolean subscribe);
 
     int getCurrentUserLoggedInMode();
 
     void setCurrentUserLoggedInMode(DataManager.LoggedInMode mode);
 
-    String getCurrentUserName();
 
-    void setCurrentUserName(String userName);
-
-    String getCurrentUserProfilePicUrl();
-
-    void setCurrentUserProfilePicUrl(String profilePicUrl);
 }

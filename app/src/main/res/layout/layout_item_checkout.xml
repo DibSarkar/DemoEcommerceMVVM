@@ -48,7 +48,7 @@
                         android:text="Fresh Carrot"
 
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:id="@+id/tv_product_name"
                         android:layout_height="wrap_content"/>
 
@@ -58,7 +58,7 @@
                         android:layout_width="wrap_content"
                         android:text="@string/Rs500"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_17sdp"
+                        android:textSize="@dimen/_14sdp"
                         android:id="@+id/tv_sell_price"
 
                         android:layout_marginTop="@dimen/_2sdp"

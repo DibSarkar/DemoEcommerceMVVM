@@ -108,7 +108,20 @@ public class CartActivity extends BaseActivity {
         rv_product_list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv_product_list.setItemAnimator(new DefaultItemAnimator());
         rv_product_list.setAdapter(cartAdapter);
-        tv_header.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
+
+
+        tv_header.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_sub_label.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_shipping_label.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_sub_label.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_price_label.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_sub_text.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_shipping_text.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        btn_proceed.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_total_label.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+        tv_total_text.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
+
+      /*  tv_header.setTypeface(Typeface.createFromAsset(getAssets(), "bebasNeue.otf"));
         tv_sub_label.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
         tv_shipping_label.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
         tv_sub_label.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
@@ -118,7 +131,7 @@ public class CartActivity extends BaseActivity {
         btn_proceed.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
         tv_total_label.setTypeface(Typeface.createFromAsset(getAssets(), "robotoMedium.ttf"));
         tv_total_text.setTypeface(Typeface.createFromAsset(getAssets(), "robotoMedium.ttf"));
-
+*/
     }
 
     @Override

@@ -28,15 +28,16 @@
                 android:layout_height="@dimen/_22sdp"/>
 
         <ImageView
-            android:layout_width="@dimen/_25sdp"
-            android:src="@drawable/notification"
+            android:layout_width="@dimen/_22sdp"
+            android:src="@drawable/tool_cart"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_marginRight="@dimen/_15sdp"
+            android:id="@+id/iv_cart"
 
             android:layout_marginTop="@dimen/_12sdp"
 
             android:layout_alignParentRight="true"
-            android:layout_height="@dimen/_25sdp"/>
+            android:layout_height="@dimen/_22sdp"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -239,7 +240,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:text="FEATURED PRODUCTS"
-                        android:textSize="@dimen/_16sdp"
+                        android:textSize="@dimen/_14sdp"
 
                         android:layout_centerInParent="true"
                         android:layout_alignParentLeft="true"
@@ -315,7 +316,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:text="NEW ARRIVALS"
-                        android:textSize="@dimen/_16sdp"
+                        android:textSize="@dimen/_14sdp"
                         android:layout_centerInParent="true"
                         android:layout_alignParentLeft="true"
                         android:textColor="@color/featured_category"

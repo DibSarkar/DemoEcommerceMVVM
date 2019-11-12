@@ -20,6 +20,8 @@ public class HomeApiResponse {
     private List<BannerBean> banner;
     private List<FeatureBean> feature;
     private List<NewarrivalBean> newarrival;
+    boolean hasnext;
+
 
     public int getResponseCode() {
         return responseCode;
@@ -77,6 +79,15 @@ public class HomeApiResponse {
 
         private String name;
         private String image;
+        private String category_id;
+
+        public void setCategory_id(String category_id) {
+            this.category_id = category_id;
+        }
+
+        public String getCategory_id() {
+            return category_id;
+        }
 
         public String getName() {
             return name;

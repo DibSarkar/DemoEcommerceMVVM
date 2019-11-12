@@ -42,12 +42,7 @@ public interface DataManager extends PreferencesHelper, ApiHelper {
     void updateApiHeader(String api_token);
 
     void updateUserInfo(
-            String accessToken,
-            Long userId,
-            LoggedInMode loggedInMode,
-            String userName,
-            String email,
-            String profilePicPath);
+         String user_id, String fname,String lname,String email,String mobile, boolean subscribe);
 
     enum LoggedInMode {
 

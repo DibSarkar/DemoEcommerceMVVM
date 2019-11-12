@@ -10,4 +10,22 @@
     <string name="hint_sign_up">Register</string>
     <string name="hint_login">Login</string>
     <string name="terms_conditions">Privacy Policy</string>
+    <!--Login Validation-->
+    <string name="invalid_email_password">Please provide a valid email and password.</string>
+    <string name="enter_firstname">Please enter first name</string>
+    <string name="enter_lastname">Please enter last name</string>
+    <string name="enter_email">Please enter email-id</string>
+    <string name="valid_email">Please enter valid email-id</string>
+    <string name="enter_mobile">Please enter mobile</string>
+    <string name="valid_mobile">Please enter valid mobile no.</string>
+    <string name="enter_password">Please enter password</string>
+    <string name="enter_confirm_password">Confirm your password</string>
+    <string name="password_mismatches">Password mismatches</string>
+    <string name="accept_privacy">Please accept our privacy policy</string>
+
+    <string-array name="array_name">
+        <item>1 kg</item>
+        <item>2 kg</item>
+        <item>3 kg</item>
+    </string-array>
 </resources>

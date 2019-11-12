@@ -11,18 +11,18 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.app.nextgrocer.R;
 import com.app.nextgrocer.base.BaseActivity;
 
+import com.app.nextgrocer.ui.activities.login.LoginActivity;
+import com.app.nextgrocer.ui.fragments.WishlistFragment;
 import com.app.nextgrocer.ui.fragments.home.HomeFragment;
 import com.app.nextgrocer.ui.fragments.categories.CategoriesFragment;
-import com.app.nextgrocer.ui.fragments.MyAccountFragment;
+import com.app.nextgrocer.ui.fragments.myaccount.MyAccountFragment;
 
 
-
-import com.app.nextgrocer.ui.activities.CartActivity;
-import com.app.nextgrocer.ui.activities.WishlistActivity;
 import com.app.nextgrocer.utils.ViewModelProviderFactory;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -91,20 +91,25 @@ public class MainActivity extends BaseActivity<MainViewModel> implements MainNav
 
                     return  true;
                 case R.id.nav_wishlist:
-
-                    Intent intent2 = new Intent(MainActivity.this, WishlistActivity.class);
-                    startActivity(intent2);
+                    WishlistFragment wishlistFragment = WishlistFragment.newInstance();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fl_Body, wishlistFragment).commit();
 
                     return  true;
                 case R.id.nav_account:
-                    MyAccountFragment myAccountFragment = MyAccountFragment.newInstance();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fl_Body, myAccountFragment).commit();
+                    if(mainViewModel.isLoggedIn())
+                    {
+                        MyAccountFragment myAccountFragment = MyAccountFragment.newInstance();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fl_Body, myAccountFragment).commit();
+
+                    }
+                    else {
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    }
 
                     return  true;
-                case R.id.nav_cart:
+                case R.id.nav_notif:
 
-                    Intent intent = new Intent(MainActivity.this, CartActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(),"Under Development",Toast.LENGTH_SHORT).show();
                     return  true;
 
             }
@@ -146,6 +151,8 @@ public class MainActivity extends BaseActivity<MainViewModel> implements MainNav
         }
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+    }
 }

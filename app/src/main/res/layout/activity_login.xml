@@ -82,9 +82,9 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_36sdp"
-                            android:hint="Enter mobile no.or email id"
+                            android:hint="Enter email id"
                             android:lines="1"
-                            android:drawableLeft="@drawable/phone_icon"
+                            android:drawableLeft="@drawable/email_icon"
 
                             android:layout_gravity="center"
                             android:layout_marginBottom="@dimen/_10sdp"
@@ -94,40 +94,39 @@
                             android:layout_marginLeft="@dimen/_15sdp"
                             android:layout_marginRight="@dimen/_15sdp"
                             android:drawablePadding="@dimen/_10sdp"
-
-                            android:inputType="text"
+                            android:singleLine="true"
+                            android:inputType="textEmailAddress"
                             android:id="@+id/et_email"
                             android:textColorHint="@color/mrp_color"
                             android:textColor="@color/desc_color"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="@dimen/_11sdp"
 
 
 
                             android:background="@drawable/estimate_round"/>
-                        <RelativeLayout
+                      <!--  <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_marginBottom="@dimen/_10sdp"
                             android:layout_marginLeft="@dimen/_15sdp"
                             android:layout_marginRight="@dimen/_15sdp"
                             android:background="@drawable/estimate_round"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content">-->
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_36sdp"
-                            android:hint="Enter OTP"
-
-                            android:lines="1"
-
-                            android:maxLength="4"
-                            android:inputType="numberDecimal"
+                            android:hint="Enter password"
+                            android:background="@drawable/estimate_round"
+                            android:singleLine="true"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_marginRight="@dimen/_15sdp"
                             android:drawableStart="@drawable/pass_icon"
                             android:drawableLeft="@drawable/pass_icon"
-                            android:background="@android:color/transparent"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="@dimen/_11sdp"
                             android:layout_gravity="center"
+                            android:inputType="textPassword"
                             android:paddingLeft="@dimen/_15sdp"
                             android:paddingRight="@dimen/_15sdp"
-
                             android:drawablePadding="@dimen/_10sdp"
                             android:id="@+id/et_pass"
                             android:textColorHint="@color/mrp_color"
@@ -135,7 +134,7 @@
 
                           />
 
-                            <TextView
+                        <!--    <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="@dimen/_15sdp"
@@ -145,7 +144,7 @@
                                 android:textColor="@color/privacy_color"
                                 android:layout_centerVertical="true"
                                 android:text="Send OTP"/>
-                        </RelativeLayout>
+                        </RelativeLayout>-->
                         <TextView
                             android:id="@+id/forgot_password"
                             android:layout_width="wrap_content"
@@ -154,7 +153,7 @@
                             android:layout_marginRight="@dimen/_20sdp"
                             android:textSize="@dimen/_10sdp"
                             android:textColor="@color/offers"
-                            android:text="Resend OTP"
+                            android:text="Forgot Paswword ?"
 
                             />
 
@@ -217,7 +216,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="@dimen/_11sdp"
+                                android:textSize="@dimen/_9sdp"
                                 android:id="@+id/tv_new_cus"
                                 android:text="@string/hint_account"
                                 android:textColor="@color/black" />
@@ -232,7 +231,7 @@
                                 android:textColor="@color/privacy_color"
 
 
-                                android:textSize="@dimen/_11sdp"/>
+                                android:textSize="@dimen/_9sdp"/>
                         </LinearLayout>
                     </LinearLayout>
 
