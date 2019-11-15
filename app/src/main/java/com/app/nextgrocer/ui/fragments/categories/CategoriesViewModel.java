@@ -29,7 +29,6 @@ public class CategoriesViewModel extends BaseViewModel<CategoriesFragmentNavigat
     private final MutableLiveData<ApiResponse> responseLiveData = new MutableLiveData<>();
 
     private static final String TAG = "CategoriesViewModel";
-
     private final Application application;
     private ConnectionDetector cd;
     public CategoriesViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, Context context, Application application) {
@@ -44,10 +43,6 @@ public class CategoriesViewModel extends BaseViewModel<CategoriesFragmentNavigat
         }
 
 
-    }
-
-    public MutableLiveData<ApiResponse> getResponseLiveData() {
-        return responseLiveData;
     }
 
     private void fetchCategories() {
@@ -67,7 +62,7 @@ public class CategoriesViewModel extends BaseViewModel<CategoriesFragmentNavigat
 
                     }
                     else {
-                        responseLiveData.setValue(ApiResponse.success());
+                        responseLiveData.setValue(ApiResponse.error_status());
                         Toast.makeText(application.getApplicationContext(),categoriesResponse.getResponseText(),Toast.LENGTH_SHORT).show();
 
                     }
@@ -75,9 +70,10 @@ public class CategoriesViewModel extends BaseViewModel<CategoriesFragmentNavigat
                     responseLiveData.setValue(ApiResponse.error(throwable));
                     Log.d(TAG, "loadCategories: " + throwable);
                 }));
+    }
 
-
-
+    public MutableLiveData<ApiResponse> getResponseLiveData() {
+        return responseLiveData;
     }
 
     public MutableLiveData<List<CategoriesResponse.DataBean>> getCategories()

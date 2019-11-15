@@ -22,7 +22,6 @@ package com.app.nextgrocer.ui.activities.splash;
 
 public interface SplashNavigator {
 
-    void openLoginActivity();
 
     void openMainActivity();
 }

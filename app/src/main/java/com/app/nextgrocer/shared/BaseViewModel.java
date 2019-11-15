@@ -22,7 +22,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.ViewModel;
+
 
 import com.app.nextgrocer.R;
 import com.app.nextgrocer.data.DataManager;
@@ -37,6 +37,7 @@ import io.reactivex.disposables.CompositeDisposable;
  * Created by amitshekhar on 07/07/17.
  */
 
+
 public abstract class BaseViewModel<N> extends AndroidViewModel {
 
     private final DataManager mDataManager;
@@ -44,12 +45,10 @@ public abstract class BaseViewModel<N> extends AndroidViewModel {
     private com.app.nextgrocer.base.BaseActivity mActivity;
 
     private final SchedulerProvider mSchedulerProvider;
-
     private CompositeDisposable mCompositeDisposable;
     private WeakReference<N> mNavigator;
     private ProgressDialog mProgressDialog;
     private Context context;
-
 
     public BaseViewModel(DataManager dataManager,
                          SchedulerProvider schedulerProvider, Context context, Application application) {

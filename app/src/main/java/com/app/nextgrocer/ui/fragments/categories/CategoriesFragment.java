@@ -111,7 +111,6 @@ public class CategoriesFragment extends BaseFragment<CategoriesViewModel> implem
                 Intent intent = new Intent(getActivity(), ProductListActivity.class);
                 intent.putExtra("cat_id",item.getId());
                 intent.putExtra("name",item.getName());
-
                 startActivity(intent);
             }
         });
@@ -157,7 +156,6 @@ public class CategoriesFragment extends BaseFragment<CategoriesViewModel> implem
 
                     case ERROR:
                         progressDialog.dismiss();
-
                         Toast.makeText(getActivity(), apiResponse.error.getMessage(), Toast.LENGTH_SHORT).show();
                         break;
 
@@ -167,6 +165,5 @@ public class CategoriesFragment extends BaseFragment<CategoriesViewModel> implem
 
             }
         });
-
     }
 }

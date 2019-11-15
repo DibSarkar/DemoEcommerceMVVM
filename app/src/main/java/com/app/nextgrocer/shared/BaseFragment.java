@@ -81,37 +81,10 @@ public abstract class BaseFragment <V extends BaseViewModel> extends DaggerFragm
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setUp();
-
-   /*     mViewDataBinding.setVariable(getBindingVariable(), mViewModel);
-        mViewDataBinding.setLifecycleOwner(this);
-        mViewDataBinding.executePendingBindings();*/
     }
 
 
 
-    public BaseActivity getBaseActivity() {
-        return mActivity;
-    }
-
-   /* public T getViewDataBinding() {
-        return mViewDataBinding;
-    }
-*/
-    public void hideKeyboard() {
-        if (mActivity != null) {
-            mActivity.hideKeyboard();
-        }
-    }
-
-    public boolean isNetworkConnected() {
-        return mActivity != null && mActivity.isNetworkConnected();
-    }
-
-    public void openActivityOnTokenExpire() {
-       /* if (mActivity != null) {
-            mActivity.openActivityOnTokenExpire();
-        }*/
-    }
 
     @Override
     public void onDestroyView() {

@@ -41,7 +41,6 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class ActivityBuilder {
 
-
     @ContributesAndroidInjector
     abstract LoginActivity bindLoginActivity();
 

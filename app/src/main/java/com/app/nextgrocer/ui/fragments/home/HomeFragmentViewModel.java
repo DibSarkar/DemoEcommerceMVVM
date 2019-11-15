@@ -27,14 +27,12 @@ public class HomeFragmentViewModel extends BaseViewModel<HomeFragmentNavigator> 
     private final MutableLiveData<List<HomeApiResponse.NewarrivalBean>> new_arrival_productsList = new MutableLiveData<>();
     private final MutableLiveData<List<HomeApiResponse.BannerBean.TopbannerImageBean>> slider_list = new MutableLiveData<>();
     private final MutableLiveData<ApiResponse> responseLiveData = new MutableLiveData<>();
-    private final ArrayList<HomeApiResponse.CategoryBean> categories = new ArrayList<>();
-    private final ArrayList<LocalBean> featured_products = new ArrayList<>();
     private final ArrayList<LocalBean> new_arrival_products = new ArrayList<>();
 
 
     private static final String TAG = "HomeFragmentViewModel";
 
-    private Context context;
+
 
     private final Application application;
 

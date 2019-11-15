@@ -123,7 +123,6 @@ public class EditProfileActivity extends BaseActivity<EditProfileViewModel> impl
                     case R.id.rb_no:
                         news_letter = "0";
                         break;
-
                 }
             }
         });
@@ -137,7 +136,6 @@ public class EditProfileActivity extends BaseActivity<EditProfileViewModel> impl
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         return R.layout.activity_edit_profile;
     }
 

@@ -63,15 +63,5 @@ public interface ApiHelper {
     Single<RegisterLoginResponse> editProfile(EditProfileRequest profileRequest);
 
     Single<CommonResponse> changePass(ChangePassRequest changePassRequest);
-  /*  Single<LoginResponse> doGoogleLoginApiCall(LoginRequest.GoogleLoginRequest request);
 
-    Single<LogoutResponse> doLogoutApiCall();
-
-    Single<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest request);
-
-    ApiHeader getApiHeader();
-
-    Single<BlogResponse> getBlogApiCall();
-
-    Single<OpenSourceResponse> getOpenSourceApiCall();*/
 }

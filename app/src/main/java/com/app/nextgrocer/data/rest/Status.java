@@ -5,8 +5,9 @@ package com.app.nextgrocer.data.rest;
  */
 
 public enum Status {
-    LOADING,
-    SUCCESS,
+    ERROR,
     ERROR_STATUS,
-    ERROR
+    LOADING,
+    SUCCESS
+
 }

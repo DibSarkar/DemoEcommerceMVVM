@@ -56,9 +56,6 @@ public class ApiHeader {
         @SerializedName("api_token")
         private String api_token;
 
-
-
-
         public ProtectedApiHeader(String api_token) {
 
             this.api_token = api_token;

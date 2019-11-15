@@ -44,13 +44,6 @@ public class BaseApplication extends Application implements HasActivityInjector 
                 .inject(this);
 
         AppLogger.init();
-      /*  ViewPump.init(ViewPump.builder()
-                .addInterceptor(new CalligraphyInterceptor(
-                        new CalligraphyConfig.Builder()
-                                .setDefaultFontPath("fonts/bebasNeue.otf")
-                                .setFontAttrId(R.attr.fontPath)
-                                .build()))
-                .build());*/
         AndroidNetworking.initialize(getApplicationContext());
         if (BuildConfig.DEBUG) {
             AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BODY);

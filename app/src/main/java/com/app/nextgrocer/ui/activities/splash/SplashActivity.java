@@ -43,12 +43,7 @@ public class SplashActivity extends BaseActivity<SplashViewModel> implements Spl
         return mSplashViewModel;
     }
 
-    @Override
-    public void openLoginActivity() {
-     /*   Intent intent = LoginActivity.newIntent(SplashActivity.this);
-        startActivity(intent);
-        finish();*/
-    }
+
 
     @Override
     public void openMainActivity() {

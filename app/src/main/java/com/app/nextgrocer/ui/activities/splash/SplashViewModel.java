@@ -42,13 +42,7 @@ public class SplashViewModel extends BaseViewModel<SplashNavigator> {
     public void init() {
         getCompositeDisposable().add(Completable.timer(3, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .subscribe(this::decideNextActivity));
-
-
-
     }
-
-
-
 
     private void decideNextActivity() {
 

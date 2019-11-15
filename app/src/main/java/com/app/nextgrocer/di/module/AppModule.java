@@ -50,7 +50,6 @@ import dagger.Provides;
 public class AppModule {
 
 
-
     @Provides
     @Singleton
     ApiHelper provideApiHelper(AppApiHelper appApiHelper) {
