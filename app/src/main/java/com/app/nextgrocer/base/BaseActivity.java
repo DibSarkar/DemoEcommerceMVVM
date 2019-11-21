@@ -77,7 +77,6 @@ public abstract class BaseActivity <V extends BaseViewModel> extends AppCompatAc
 
    @Override
    protected void onDestroy() {
-
        if (mUnBinder != null) {
            mUnBinder.unbind();
        }

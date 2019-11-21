@@ -22,6 +22,7 @@
     <string name="enter_confirm_password">Confirm your password</string>
     <string name="password_mismatches">Password mismatches</string>
     <string name="accept_privacy">Please accept our privacy policy</string>
+    <string name="no_address">No Address found</string>
 
     <string-array name="array_name">
         <item>1 kg</item>

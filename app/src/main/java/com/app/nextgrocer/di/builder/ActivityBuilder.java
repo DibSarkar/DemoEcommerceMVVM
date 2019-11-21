@@ -17,6 +17,10 @@
 package com.app.nextgrocer.di.builder;
 
 
+import com.app.nextgrocer.ui.activities.address.addAddress.AddAddressActivity;
+import com.app.nextgrocer.ui.activities.address.addAddress.CountriesModule;
+import com.app.nextgrocer.ui.activities.address.addressList.AddressListActivity;
+import com.app.nextgrocer.ui.activities.address.addressList.AddressListModule;
 import com.app.nextgrocer.ui.activities.editProfile.EditProfileActivity;
 import com.app.nextgrocer.ui.activities.login.LoginActivity;
 import com.app.nextgrocer.ui.activities.productDetails.ProductDetailsActivity;
@@ -62,6 +66,15 @@ public abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = ProductListModule.class)
     abstract ProductListActivity bindProductListActivity();
+
+    @ContributesAndroidInjector(modules = CountriesModule.class)
+    abstract AddAddressActivity bindAddAddressActivity();
+
+    @ContributesAndroidInjector(modules = AddressListModule.class)
+    abstract AddressListActivity bindAddressListActivity();
+
+
+
 
 
 

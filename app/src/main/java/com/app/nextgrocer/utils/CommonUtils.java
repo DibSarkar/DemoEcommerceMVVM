@@ -22,6 +22,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.provider.Settings;
 import android.util.Patterns;
@@ -39,7 +40,7 @@ import java.util.Locale;
  */
 
 public final class CommonUtils {
-
+    private static Typeface typefaceRegular = null;
     private CommonUtils() {
         // This utility class is not publicly instantiable
     }
@@ -61,7 +62,12 @@ public final class CommonUtils {
 
         return progressDialog;
     }
-
+    public static Typeface getTypefaceRegular(Context context) {
+        if (typefaceRegular == null) {
+            typefaceRegular = Typeface.createFromAsset(context.getAssets(), "fredokaOne.ttf");
+        }
+        return typefaceRegular;
+    }
     public static boolean isEmailValid(String email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }

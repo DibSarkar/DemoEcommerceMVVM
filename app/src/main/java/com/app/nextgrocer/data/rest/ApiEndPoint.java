@@ -46,4 +46,14 @@ public final class ApiEndPoint {
 
     public static final String CHANGE_PASS_URL = Constants.BASE_URL+"customer/changePassword";
 
+    public static final String COUNTRIES_URL = Constants.BASE_URL+"address/countryList";
+
+    public static final String STATES_URL = Constants.BASE_URL+"address/stateList";
+
+    public static final String ADD_ADDRESS_URL = Constants.BASE_URL+"address/addressAdd";
+
+    public static final String ADDRESS_LIST_URL = Constants.BASE_URL+"address/getAddress";
+
+    public static final String DELETE_ADDRESS_URL = Constants.BASE_URL+"address/deleteAddress";
+
 }

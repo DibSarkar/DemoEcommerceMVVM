@@ -24,12 +24,7 @@ import butterknife.ButterKnife;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>   {
 
     private final ArrayList<LocalBean> mValues;
-
-
-
     Context mContext;
-    Activity activity;
-    int status;
 
     public CartAdapter(ArrayList<LocalBean> items) {
         mValues = items;
@@ -67,10 +62,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>   
         holder.tv_product_name.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
         holder.tv_sell_price.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fredokaOne.ttf"));
 
-
-      /*  holder.tv_product_name.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "roboto_regular.ttf"));
-        holder.tv_sell_price.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "robotoMedium.ttf"));
-*/
 
     }
 
@@ -110,12 +101,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>   
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-            /*view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mListener.onItemClick(mValues.get(getLayoutPosition()), getLayoutPosition());
-                }
-            });*/
 
         }
     }

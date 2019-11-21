@@ -3,12 +3,12 @@ package com.app.nextgrocer.utils;
 import android.app.Application;
 import android.content.Context;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.app.nextgrocer.data.DataManager;
+import com.app.nextgrocer.ui.activities.address.addAddress.AddAddressViewModel;
+import com.app.nextgrocer.ui.activities.address.addressList.AddressListViewModel;
 import com.app.nextgrocer.ui.activities.editProfile.EditProfileViewModel;
 import com.app.nextgrocer.ui.activities.login.LoginViewModel;
 import com.app.nextgrocer.ui.activities.productDetails.ProductDetailsViewModel;
@@ -93,6 +93,14 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
     else if (modelClass.isAssignableFrom(ChangePassViewModel.class)) {
       //noinspection unchecked
       return (T) new ChangePassViewModel(dataManager,schedulerProvider,context,application);
+    }
+    else if (modelClass.isAssignableFrom(AddAddressViewModel.class)) {
+      //noinspection unchecked
+      return (T) new AddAddressViewModel(dataManager,schedulerProvider,context,application);
+    }
+    else if (modelClass.isAssignableFrom(AddressListViewModel.class)) {
+      //noinspection unchecked
+      return (T) new AddressListViewModel(dataManager,schedulerProvider,context,application);
     }
 
     throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());

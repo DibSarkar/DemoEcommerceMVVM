@@ -19,6 +19,12 @@ package com.app.nextgrocer.data.rest;
 
 
 import com.app.nextgrocer.data.model.CommonResponse;
+import com.app.nextgrocer.data.model.address.AddAddressRequest;
+import com.app.nextgrocer.data.model.address.AddressListResponse;
+import com.app.nextgrocer.data.model.address.CountriesResponse;
+import com.app.nextgrocer.data.model.address.DeleteAddressRequest;
+import com.app.nextgrocer.data.model.address.StatesRequest;
+import com.app.nextgrocer.data.model.address.StatesResponse;
 import com.app.nextgrocer.data.model.categories.CategoriesResponse;
 import com.app.nextgrocer.data.model.changePass.ChangePassRequest;
 import com.app.nextgrocer.data.model.home.HomeApiResponse;
@@ -33,6 +39,7 @@ import com.app.nextgrocer.data.model.register_login.LoginRequest;
 import com.app.nextgrocer.data.model.register_login.RegisterLoginResponse;
 import com.app.nextgrocer.data.model.register_login.RegisterRequest;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 
@@ -63,5 +70,17 @@ public interface ApiHelper {
     Single<RegisterLoginResponse> editProfile(EditProfileRequest profileRequest);
 
     Single<CommonResponse> changePass(ChangePassRequest changePassRequest);
+
+    Observable<CountriesResponse> getCountries(ProfileRequest profileRequest);
+
+    Observable<StatesResponse> getStates(StatesRequest statesRequest);
+
+    Single<CommonResponse> addAddress(AddAddressRequest addAddressRequest);
+
+    Observable<AddressListResponse> getAddress(ProfileRequest profileRequest);
+
+    Completable deleteAddress(DeleteAddressRequest deleteAddressRequest);
+
+
 
 }

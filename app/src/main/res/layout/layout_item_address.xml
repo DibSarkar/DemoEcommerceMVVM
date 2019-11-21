@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:id="@+id/rb_address"
+                android:layout_alignParentLeft="true"
+                android:buttonTint="@color/colorPrimary"
+                android:layout_height="wrap_content"
+                />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@id/rb_address"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_7sdp"
+            android:layout_marginRight="@dimen/_7sdp"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+        <com.app.nextgrocer.utils.TextViewRegular
+            android:layout_width="wrap_content"
+            android:text="Default Address"
+            android:textColor="@color/offers"
+            android:textSize="@dimen/_12sdp"
+            android:visibility="gone"
+            android:gravity="center"
+            android:id="@+id/tv_default_add"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_height="wrap_content"/>
+
+            <com.app.nextgrocer.utils.TextViewRegular
+                android:layout_width="wrap_content"
+                android:text="Dib Sarkar"
+                android:id="@+id/tv_name"
+                android:textColor="@color/order_id_text"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:textSize="@dimen/_11sdp"
+                android:layout_height="wrap_content"/>
+            <com.app.nextgrocer.utils.TextViewRegular
+                android:layout_width="wrap_content"
+                android:text="Address"
+                android:ems="15"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:id="@+id/tv_address"
+                android:textColor="@color/order_id_text"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:textSize="@dimen/_11sdp"
+                android:layout_height="wrap_content"/>
+            <com.app.nextgrocer.utils.TextViewRegular
+                android:layout_width="wrap_content"
+                android:text="City"
+                android:id="@+id/tv_city"
+                android:textColor="@color/order_id_text"
+                android:textSize="@dimen/_11sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_height="wrap_content"/>
+            <com.app.nextgrocer.utils.TextViewRegular
+                android:layout_width="wrap_content"
+                android:text="State"
+                android:id="@+id/tv_state"
+                android:textColor="@color/order_id_text"
+                android:textSize="@dimen/_11sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_height="wrap_content"/>
+            <com.app.nextgrocer.utils.TextViewRegular
+                android:layout_width="wrap_content"
+                android:text="Country"
+                android:id="@+id/tv_country"
+                android:textColor="@color/order_id_text"
+                android:textSize="@dimen/_11sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:src="@drawable/edit" />
+            <View
+                android:layout_width="1.5dp"
+                android:background="@color/colorPrimaryDark"
+                android:visibility="invisible"
+                android:id="@+id/view_line"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:layout_width="@dimen/_13sdp"
+                android:layout_height="@dimen/_13sdp"
+                android:visibility="invisible"
+                android:id="@+id/iv_delete"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:src="@drawable/del_add" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -135,8 +135,6 @@ public class RegisterActivity extends BaseActivity<RegisterViewModel> implements
     void updateUI()
     {
 
-
-
         et_email.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
         et_pass.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
         et_fname.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
@@ -149,8 +147,6 @@ public class RegisterActivity extends BaseActivity<RegisterViewModel> implements
         tv_news.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
         tv_login.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
         tv_terms1.setTypeface(Typeface.createFromAsset(getAssets(), "fredokaOne.ttf"));
-
-
 
      /*   et_email.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));
         et_pass.setTypeface(Typeface.createFromAsset(getAssets(), "roboto_regular.ttf"));

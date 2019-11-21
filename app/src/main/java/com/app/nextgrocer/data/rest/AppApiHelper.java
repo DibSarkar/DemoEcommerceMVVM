@@ -18,6 +18,12 @@ package com.app.nextgrocer.data.rest;
 
 
 import com.app.nextgrocer.data.model.CommonResponse;
+import com.app.nextgrocer.data.model.address.AddAddressRequest;
+import com.app.nextgrocer.data.model.address.AddressListResponse;
+import com.app.nextgrocer.data.model.address.CountriesResponse;
+import com.app.nextgrocer.data.model.address.DeleteAddressRequest;
+import com.app.nextgrocer.data.model.address.StatesRequest;
+import com.app.nextgrocer.data.model.address.StatesResponse;
 import com.app.nextgrocer.data.model.categories.CategoriesResponse;
 import com.app.nextgrocer.data.model.changePass.ChangePassRequest;
 import com.app.nextgrocer.data.model.home.HomeApiResponse;
@@ -38,6 +44,7 @@ import com.rx2androidnetworking.Rx2InternalNetworking;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 
@@ -154,6 +161,57 @@ public class AppApiHelper implements ApiHelper {
                 .addQueryParameter("api_token", Constants.API_TOKEN)
                 .build()
                 .getObjectSingle(CommonResponse.class);
+    }
+
+    @Override
+    public Observable<CountriesResponse> getCountries(ProfileRequest profileRequest) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.COUNTRIES_URL)
+                .addBodyParameter(profileRequest)
+                // .addHeaders(mApiHeader.getProtectedApiHeader())
+                .addQueryParameter("api_token", Constants.API_TOKEN)
+                .build()
+                .getObjectObservable(CountriesResponse.class);
+    }
+
+    @Override
+    public Observable<StatesResponse> getStates(StatesRequest statesRequest) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.STATES_URL)
+                .addBodyParameter(statesRequest)
+                // .addHeaders(mApiHeader.getProtectedApiHeader())
+                .addQueryParameter("api_token", Constants.API_TOKEN)
+                .build()
+                .getObjectObservable(StatesResponse.class);
+    }
+
+    @Override
+    public Single<CommonResponse> addAddress(AddAddressRequest addAddressRequest) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.ADD_ADDRESS_URL)
+                .addBodyParameter(addAddressRequest)
+                // .addHeaders(mApiHeader.getProtectedApiHeader())
+                .addQueryParameter("api_token", Constants.API_TOKEN)
+                .build()
+                .getObjectSingle(CommonResponse.class);
+    }
+
+    @Override
+    public Observable<AddressListResponse> getAddress(ProfileRequest profileRequest) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.ADDRESS_LIST_URL)
+                .addBodyParameter(profileRequest)
+                // .addHeaders(mApiHeader.getProtectedApiHeader())
+                .addQueryParameter("api_token", Constants.API_TOKEN)
+                .build()
+                .getObjectObservable(AddressListResponse.class);
+    }
+
+    @Override
+    public Completable deleteAddress(DeleteAddressRequest deleteAddressRequest) {
+        return Rx2AndroidNetworking.post(ApiEndPoint.DELETE_ADDRESS_URL)
+                .addBodyParameter(deleteAddressRequest)
+                // .addHeaders(mApiHeader.getProtectedApiHeader())
+                .addQueryParameter("api_token", Constants.API_TOKEN)
+                .build()
+                .getObjectCompletable(CommonResponse.class);
+
     }
 
     @Override

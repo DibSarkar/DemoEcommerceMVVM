@@ -1,39 +1,30 @@
 package com.app.nextgrocer.ui.fragments.myaccount;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.app.nextgrocer.R;
 import com.app.nextgrocer.data.model.local_models.ProfileDataResponse;
-import com.app.nextgrocer.data.rest.ApiResponse;
 import com.app.nextgrocer.shared.BaseFragment;
+import com.app.nextgrocer.ui.activities.address.addressList.AddressListActivity;
 import com.app.nextgrocer.ui.activities.editProfile.EditProfileActivity;
 import com.app.nextgrocer.ui.activities.home.MainActivity;
-import com.app.nextgrocer.ui.activities.login.LoginActivity;
 import com.app.nextgrocer.ui.activities.MyOrdersActivity;
-import com.app.nextgrocer.ui.fragments.home.HomeFragmentNavigator;
-import com.app.nextgrocer.ui.fragments.home.HomeFragmentViewModel;
 import com.app.nextgrocer.ui.fragments.myaccount.changePass.ChangePassDialog;
-import com.app.nextgrocer.utils.CommonUtils;
 import com.app.nextgrocer.utils.ViewModelProviderFactory;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MyAccountFragment extends BaseFragment<MyAccountViewModel> implements MyAccountNavigator {
@@ -167,7 +158,7 @@ public class MyAccountFragment extends BaseFragment<MyAccountViewModel> implemen
         });
     }
 
-    @OnClick({R.id.tv_myorders_label,R.id.tv_logout_label,R.id.iv_logout,R.id.iv_edit,R.id.ll_change_pass})
+    @OnClick({R.id.tv_myorders_label,R.id.tv_logout_label,R.id.iv_logout,R.id.iv_edit,R.id.ll_change_pass,R.id.ll_address})
     void onClickEvent(View view) {
         switch (view.getId()) {
 
@@ -193,6 +184,11 @@ public class MyAccountFragment extends BaseFragment<MyAccountViewModel> implemen
                     ChangePassDialog.newInstance().show(getActivity().getSupportFragmentManager());
                 }
                 break;
+
+            case R.id.ll_address :
+                startActivity(new Intent(getActivity(), AddressListActivity.class));
+                break;
+
         }
         }
 

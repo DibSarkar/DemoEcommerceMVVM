@@ -194,8 +194,7 @@
             android:layout_width="match_parent"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
-
-
+            android:id="@+id/ll_address"
             android:layout_height="wrap_content"
             android:background="@drawable/account_bg"
             android:orientation="vertical">

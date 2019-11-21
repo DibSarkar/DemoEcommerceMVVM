@@ -67,9 +67,10 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:layout_marginRight="@dimen/_20sdp"
 
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -79,7 +80,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
 
@@ -102,22 +103,23 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <com.app.nextgrocer.utils.TextViewRegular
                         android:layout_width="@dimen/_90sdp"
                         android:text="*First Name"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#000"
+
                         android:textSize="@dimen/_13sdp"
                         android:layout_gravity="center"
                         android:layout_height="wrap_content"
 
                         />
 
-                    <EditText
+                    <com.app.nextgrocer.utils.EditTextRegular
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:hint="Enter"
-                        android:inputType="text"
+                        android:inputType="textCapSentences"
                         android:singleLine="true"
                         android:layout_gravity="center"
                         android:paddingLeft="@dimen/_15sdp"
@@ -138,7 +140,7 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <com.app.nextgrocer.utils.TextViewRegular
                         android:layout_width="@dimen/_90sdp"
                         android:text="*Last Name"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -150,11 +152,11 @@
 
                         />
 
-                    <EditText
+                    <com.app.nextgrocer.utils.EditTextRegular
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:hint="Enter"
-                        android:inputType="text"
+                        android:inputType="textCapSentences"
                         android:singleLine="true"
                         android:layout_gravity="center"
                         android:paddingLeft="@dimen/_15sdp"
@@ -174,7 +176,7 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <com.app.nextgrocer.utils.TextViewRegular
                         android:layout_width="@dimen/_90sdp"
                         android:text="Company"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -185,11 +187,11 @@
 
                         />
 
-                    <EditText
+                    <com.app.nextgrocer.utils.EditTextRegular
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:hint="Enter"
-                        android:inputType="text"
+                        android:inputType="textCapSentences"
                         android:singleLine="true"
                         android:layout_gravity="center"
                         android:paddingLeft="@dimen/_15sdp"
@@ -210,7 +212,7 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <com.app.nextgrocer.utils.TextViewRegular
                         android:layout_width="@dimen/_90sdp"
                         android:text="*Address 1"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -221,11 +223,11 @@
 
                         />
 
-                    <EditText
+                    <com.app.nextgrocer.utils.EditTextRegular
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:hint="Enter"
-                        android:inputType="text"
+                        android:inputType="textCapSentences"
                         android:singleLine="true"
                         android:layout_gravity="center"
                         android:paddingLeft="@dimen/_15sdp"
@@ -245,7 +247,7 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <com.app.nextgrocer.utils.TextViewRegular
                         android:layout_width="@dimen/_90sdp"
                         android:text="Address 2"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -257,12 +259,12 @@
 
                         />
 
-                    <EditText
+                    <com.app.nextgrocer.utils.EditTextRegular
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:hint="Enter"
                         android:layout_gravity="center"
-                        android:inputType="text"
+                        android:inputType="textCapSentences"
                         android:singleLine="true"
                         android:id="@+id/et_address2"
                         android:paddingLeft="@dimen/_15sdp"
@@ -282,7 +284,7 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <com.app.nextgrocer.utils.TextViewRegular
                         android:layout_width="@dimen/_90sdp"
                         android:text="*City"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -294,13 +296,12 @@
 
                         />
 
-                    <EditText
+                    <com.app.nextgrocer.utils.EditTextRegular
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:hint="Enter"
                         android:layout_gravity="center"
-
-                        android:inputType="text"
+                        android:inputType="textCapSentences"
                         android:singleLine="true"
                         android:id="@+id/et_city"
                         android:paddingLeft="@dimen/_15sdp"
@@ -319,7 +320,7 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <com.app.nextgrocer.utils.TextViewRegular
                         android:layout_width="100dp"
                         android:text="*Country"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -347,7 +348,7 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <com.app.nextgrocer.utils.TextViewRegular
                         android:layout_width="@dimen/_90sdp"
                         android:text="*Pin Code"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -359,7 +360,7 @@
 
                         />
 
-                    <EditText
+                    <com.app.nextgrocer.utils.EditTextRegular
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:hint="Enter"
@@ -383,7 +384,7 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <com.app.nextgrocer.utils.TextViewRegular
                         android:layout_width="@dimen/_90sdp"
                         android:text="*Region / State"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -407,11 +408,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+
                     android:layout_marginTop="@dimen/_10sdp"
                     android:id="@+id/ll_default"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.app.nextgrocer.utils.TextViewRegular
                         android:layout_width="@dimen/_90sdp"
                         android:text="Default Address"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -457,12 +459,11 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btn_register"
+                    android:id="@+id/btn_add"
                     android:layout_width="@dimen/_92sdp"
-
                     android:textAlignment="center"
                     android:gravity="center"
-                    android:layout_marginTop="@dimen/_9sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:textAllCaps="false"
                     android:layout_gravity="center"
                     android:padding="0dp"
