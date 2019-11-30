@@ -269,10 +269,7 @@ public class ProductListActivity extends BaseActivity<ProductListViewModel> impl
                         }
                     }
                 }
-
-
             }
-
 
         }
     }

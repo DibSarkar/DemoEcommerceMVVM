@@ -6,7 +6,11 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.telephony.CellInfo;
+import android.telephony.CellInfoLte;
+import android.telephony.TelephonyManager;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
@@ -26,6 +30,8 @@ import com.app.nextgrocer.ui.fragments.myaccount.MyAccountFragment;
 import com.app.nextgrocer.utils.ViewModelProviderFactory;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -131,8 +137,6 @@ public class MainActivity extends BaseActivity<MainViewModel> implements MainNav
         setUnBinder(ButterKnife.bind(this));
         navView.setCurrentItem(0);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
         navView.enableAnimation(false);
         navView.enableShiftingMode(false);
         navView.enableItemShiftingMode(false);
@@ -141,6 +145,8 @@ public class MainActivity extends BaseActivity<MainViewModel> implements MainNav
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_Body, homeFragment).commit();
         hideSoftKeyboard();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+
 
     }
 

@@ -54,6 +54,8 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.travijuu.numberpicker.library.Enums.ActionEnum;
+import com.travijuu.numberpicker.library.Interface.ValueChangedListener;
 import com.travijuu.numberpicker.library.NumberPicker;
 
 import java.text.DecimalFormat;
@@ -225,6 +227,12 @@ public class ProductDetailsActivity extends BaseActivity<ProductDetailsViewModel
         spinner_select.setAdapter(adapter);
 
         setUpList();
+  /*   np_count.setValueChangedListener(new ValueChangedListener() {
+         @Override
+         public void valueChanged(int value, ActionEnum action) {
+
+         }
+     });*/
 
     }
 

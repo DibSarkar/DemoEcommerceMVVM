@@ -112,7 +112,7 @@ public abstract class BaseActivity <V extends BaseViewModel> extends AppCompatAc
            }
 
            public boolean isNetworkConnected() {
-        return NetworkUtils.isNetworkConnected(getApplicationContext());
+             return NetworkUtils.isNetworkConnected(getApplicationContext());
     }
 
 //    public void openActivityOnTokenExpire() {

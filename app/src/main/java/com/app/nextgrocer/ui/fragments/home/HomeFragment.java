@@ -122,7 +122,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
     public void onCreate(Bundle savedInstanceState) {
         progressDialog = CommonUtils.showLoadingDialog(getActivity());
         super.onCreate(savedInstanceState);
-        homeFragmentViewModel.setNavigator(this);
+     //   homeFragmentViewModel.setNavigator(this);
     }
 
 
@@ -287,9 +287,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> implements
               slider.setDuration(4000);
           }
       });
-
-
-
 
     }
 

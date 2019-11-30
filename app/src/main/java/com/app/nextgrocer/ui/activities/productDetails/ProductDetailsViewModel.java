@@ -37,7 +37,6 @@ public class ProductDetailsViewModel extends BaseViewModel<ProductDetailsNavigat
     private ConnectionDetector cd;
     public ProductDetailsViewModel(DataManager dataManager, SchedulerProvider schedulerProvider, Context context, Application application) {
         super(dataManager,schedulerProvider,context,application);
-
         this.application = application;
         cd = new ConnectionDetector(this.application.getApplicationContext());
 

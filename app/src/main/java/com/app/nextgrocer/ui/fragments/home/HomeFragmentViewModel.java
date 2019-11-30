@@ -118,7 +118,7 @@ public class HomeFragmentViewModel extends BaseViewModel<HomeFragmentNavigator> 
                             }
                             else {
                                 Toast.makeText(application.getApplicationContext(),homeApiResponse.getResponseText(),Toast.LENGTH_SHORT).show();
-                                responseLiveData.setValue(ApiResponse.success());
+                                responseLiveData.setValue(ApiResponse.error_status());
                             }
 
 
