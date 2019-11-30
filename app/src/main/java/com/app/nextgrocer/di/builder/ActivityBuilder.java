@@ -73,9 +73,4 @@ public abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = AddressListModule.class)
     abstract AddressListActivity bindAddressListActivity();
 
-
-
-
-
-
 }
